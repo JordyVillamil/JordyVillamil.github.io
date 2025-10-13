@@ -23,7 +23,7 @@ const Navbar: React.FC = () => {
       {/* Información de Contacto (Derecha) */}
       <div className="contact-info">
         {/* Si eliminas la línea del teléfono, ¡tu Navbar.tsx estará completo! */}
-        <span>(+57) 310 695 0078</span>
+        <span>(+57) 320 425 42 87</span>
       </div>
     </header>
   );
