@@ -1,10 +1,12 @@
 {
   "name": "portfolio-jordy-villamil",
+  "homepage": "https://JordyVillamil.github.io/portfolio-Jordy-Villamil",
   "private": true,
   "version": "0.0.0",
   "type": "module",
   "scripts": {
     "dev": "vite",
+    "clean": "rimraf dist",
     "build": "npx tsc && vite build",
     "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview",
@@ -27,6 +29,7 @@
     "eslint-plugin-react-hooks": "^4.6.0",
     "eslint-plugin-react-refresh": "^0.4.5",
     "gh-pages": "^6.3.0",
+    "rimraf": "^6.0.1",
     "typescript": "^5.9.3",
     "vite": "^5.1.6"
   }
