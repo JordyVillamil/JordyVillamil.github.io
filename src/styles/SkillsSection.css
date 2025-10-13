@@ -1,0 +1,68 @@
+/* src/styles/SkillsSection.css */
+
+.skills-section-container {
+  /* Extiende los estilos base, pero con un padding diferente si lo necesitas */
+  padding: 80px 10%;
+  background-color: #f7f7f7; /* Un gris muy claro para diferenciarla un poco */
+}
+
+.specialty-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  gap: 40px;
+  margin-top: 40px;
+}
+
+.specialty-card {
+  padding: 30px;
+  background-color: #ffffff;
+  border-radius: 10px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+  border-top: 5px solid var(--color-primary-ui, #5c00b8); /* Barra de color */
+  transition: all 0.3s ease;
+}
+
+.specialty-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+}
+
+.card-header {
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.skill-icon {
+  font-size: 2.5em; /* Tamaño del ícono (emoji) */
+  margin-right: 15px;
+}
+
+.specialty-card h3 {
+  font-size: 1.4em;
+  color: var(--color-primary-ui, #5c00b8);
+  text-align: left;
+  margin: 0;
+}
+
+.skill-description {
+  line-height: 1.5;
+  margin-bottom: 20px;
+  font-size: 0.95em;
+}
+
+.tech-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 15px;
+}
+
+.tech-tag {
+  background-color: #e0e0ff; /* Fondo claro para el tag */
+  color: #4a0099;
+  padding: 5px 12px;
+  border-radius: 20px;
+  font-size: 0.85em;
+  font-weight: 600;
+}

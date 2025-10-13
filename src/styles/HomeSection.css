@@ -1,0 +1,132 @@
+/* src/styles/HomeSection.css */
+
+/* --- Variables y Fuente Consolas --- */
+/* Asegúrate de que las variables globales estén definidas en src/styles/global.css o aquí */
+:root {
+  --color-primary-ui: #5c00b8; /* El púrpura de tu plantilla */
+  --color-dark-bg: #090A0F;    /* Color de fondo oscuro */
+  --color-light-bg: #ffffff;
+  --font-code: 'Consolas', 'Courier New', monospace; 
+}
+
+/* ------------------------------------ */
+/* --- Contenedor Principal (Con fondo oscuro y fuente Consolas) --- */
+/* ------------------------------------ */
+.home-section-container {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start; 
+  position: relative;
+  overflow: hidden;
+  padding: 0 10%;
+  
+  font-family: var(--font-code); 
+  color: var(--color-light-bg);
+  background-color: var(--color-dark-bg); 
+}
+
+/* --- Estilos del Texto de Presentación --- */
+.presentation-text {
+  z-index: 10;
+  padding-left: 20px; 
+}
+
+.presentation-text .name-title {
+  font-size: 5em;
+  line-height: 1.1;
+  color: var(--color-light-bg);
+}
+
+.presentation-text .fullstack-title {
+  font-size: 6.5em;
+  font-weight: bold;
+  color: var(--color-primary-ui);
+}
+
+.presentation-text .subtitle {
+  font-size: 1.5em;
+  color: #00ffc8; /* Neón verde para el rol */
+  margin-bottom: 15px;
+}
+
+/* ---------------------------------------------------------------------- */
+/* --- 1. Animación del Cielo Estrellado --- */
+/* ---------------------------------------------------------------------- */
+
+@keyframes animStar {
+  from {
+    transform: translateY(0px);
+  }
+  to {
+    transform: translateY(-2000px);
+  }
+}
+
+/* ---------------------------------------------------------------------- */
+/* --- 2. Capas de Estrellas (box-shadow) --- */
+/* ---------------------------------------------------------------------- */
+
+#stars, #stars2, #stars3 {
+  width: 1px;
+  height: 1px;
+  background: transparent;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-repeat: repeat;
+  filter: blur(0.5px); /* Suaviza los puntos */
+}
+
+/* ------------------------------------ */
+/* --- Capa 1: Estrellas Pequeñas (Lentas, 800 puntos) --- */
+/* ------------------------------------ */
+
+#stars {
+  /* 🛑 PEGADO DE LA SALIDA DE TU CONSOLA (CAPA 1) 🛑 */
+  box-shadow: 
+    738px -1484px #fff,
+    -1844px -231px #fff,
+    /* ... (continúa aquí) ... */
+    -585px -1380px #fff,
+    -1572px 1923px #fff; 
+    
+  animation: animStar 150s linear infinite; 
+  transform: scale(0.6); 
+}
+
+/* ------------------------------------ */
+/* --- Capa 2: Estrellas Medianas (Medias, 400 puntos) --- */
+/* ------------------------------------ */
+
+#stars2 {
+  /* 🛑 PEGADO DE LA SALIDA DE TU CONSOLA (CAPA 2) 🛑 */
+  box-shadow: 
+    1123px 424px rgba(255, 255, 255, 0.7),
+    -413px 1484px rgba(255, 255, 255, 0.7),
+    /* ... (continúa aquí) ... */
+    -1075px -1081px rgba(255, 255, 255, 0.7),
+    1281px 216px rgba(255, 255, 255, 0.7);
+
+  animation: animStar 100s linear infinite; 
+  transform: scale(1.0); 
+}
+
+/* ------------------------------------ */
+/* --- Capa 3: Estrellas Grandes (Rápidas, 150 puntos) --- */
+/* ------------------------------------ */
+
+#stars3 {
+  /* 🛑 PEGADO DE LA SALIDA DE TU CONSOLA (CAPA 3) 🛑 */
+  box-shadow: 
+    701px 1638px rgba(255, 255, 255, 0.4),
+    886px 581px rgba(255, 255, 255, 0.4),
+    /* ... (continúa aquí) ... */
+    1780px -803px rgba(255, 255, 255, 0.4);
+    
+  animation: animStar 50s linear infinite; 
+  transform: scale(1.4); 
+}

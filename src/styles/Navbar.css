@@ -1,0 +1,70 @@
+/* src/styles/Navbar.css */
+
+/* ---------------------------------------------------------------------- */
+/* --- Navbar Principal --- */
+/* ---------------------------------------------------------------------- */
+
+.navbar-container {
+  position: fixed; 
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 60px; 
+  
+  /* Usa la variable global púrpura */
+  background-color: var(--color-primary-ui, #5c00b8); 
+  
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 40px;
+  z-index: 100; 
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+/* ------------------------------------ */
+/* --- Logo --- */
+/* ------------------------------------ */
+
+.navbar-logo {
+  font-size: 1.8em;
+  font-weight: bold;
+  color: var(--color-light, #ffffff);
+  text-decoration: none;
+}
+
+.logo-icon {
+  font-size: 1.2em; 
+}
+
+/* ------------------------------------ */
+/* --- Enlaces de Navegación --- */
+/* ------------------------------------ */
+
+.nav-links {
+  display: flex;
+  gap: 30px; 
+}
+
+.nav-item {
+  color: var(--color-light, #ffffff);
+  text-decoration: none;
+  padding: 18px 0; 
+  transition: border-bottom 0.3s ease;
+  font-size: 1em;
+}
+
+.nav-item:hover,
+.nav-item.active {
+  border-bottom: 3px solid var(--color-light, #ffffff);
+}
+
+/* ------------------------------------ */
+/* --- Información de Contacto --- */
+/* ------------------------------------ */
+
+.contact-info span {
+  color: var(--color-light, #ffffff);
+  font-weight: 500;
+  font-size: 1em;
+}

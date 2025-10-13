@@ -1,0 +1,108 @@
+/* src/styles/ContactSection.css */
+
+.contact-section-container {
+  /* Extiende los estilos base */
+  padding: 80px 10%;
+}
+
+.contact-grid {
+  display: grid;
+  grid-template-columns: 1fr 2fr; /* Columna de info (1 parte) y formulario (2 partes) */
+  gap: 50px;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+/* --- Panel de Información --- */
+.contact-info-panel {
+  padding: 20px;
+}
+
+.contact-info-panel h3 {
+  color: var(--color-primary-ui, #5c00b8);
+  font-size: 1.5em;
+  text-align: left;
+  margin-bottom: 20px;
+}
+
+.contact-info-panel p {
+  line-height: 1.6;
+  margin-bottom: 30px;
+}
+
+.info-item {
+  display: flex;
+  align-items: center;
+  margin-bottom: 15px;
+}
+
+.info-icon {
+  font-size: 1.5em;
+  color: var(--color-primary-ui, #5c00b8);
+  margin-right: 15px;
+}
+
+.info-item a {
+  color: var(--color-text-dark, #333);
+  text-decoration: none;
+}
+
+/* --- Panel del Formulario --- */
+.contact-form-panel {
+  padding: 20px;
+  background-color: #f9f9f9;
+  border-radius: 8px;
+}
+
+.form-group {
+  margin-bottom: 20px;
+}
+
+.form-group label {
+  display: block;
+  font-weight: 600;
+  margin-bottom: 8px;
+  color: var(--color-primary-ui, #5c00b8);
+}
+
+.contact-form input[type="text"],
+.contact-form input[type="email"],
+.contact-form textarea {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-sizing: border-box;
+  font-size: 1em;
+  transition: border-color 0.3s;
+}
+
+.contact-form input:focus,
+.contact-form textarea:focus {
+  border-color: var(--color-primary-ui, #5c00b8);
+  outline: none;
+}
+
+.submit-button {
+  width: 100%;
+  background-color: var(--color-primary-ui, #5c00b8);
+  color: #ffffff;
+  padding: 15px 0;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 1.1em;
+  font-weight: 600;
+  transition: background-color 0.3s;
+}
+
+.submit-button:hover {
+  background-color: #4a0099;
+}
+
+/* --- Responsiveness --- */
+@media (max-width: 992px) {
+  .contact-grid {
+    grid-template-columns: 1fr; /* Una sola columna para móviles y tablets */
+  }
+}

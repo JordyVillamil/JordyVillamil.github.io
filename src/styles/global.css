@@ -1,0 +1,49 @@
+/* src/styles/global.css */
+
+/* Variables de Color (para un diseño consistente y fácil de cambiar) */
+:root {
+  --color-dark-bg: #090A0F;    /* El color más oscuro para el fondo estrellado */
+  --color-light-bg: #ffffff;   /* Fondo blanco/claro para el resto de secciones */
+  --color-primary-ui: #5c00b8; /* El púrpura de la Navbar y títulos */
+  --color-text-dark: #333333;  /* Texto oscuro general */
+  --font-code: 'Consolas', 'Courier New', monospace; 
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  scroll-behavior: smooth; /* Para el scroll suave entre secciones */
+}
+
+/* El fondo por defecto del cuerpo es claro, solo la sección Home será oscura */
+body {
+  font-family: Arial, sans-serif;
+  background-color: var(--color-light-bg); 
+  color: var(--color-text-dark);
+}
+
+/* Estilo para los títulos de las secciones, usando el púrpura */
+h1, h2, h3 {
+  color: var(--color-text-dark);
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+/* src/styles/global.css (Adiciones) */
+
+.section-base {
+  padding: 80px 10%; /* Espacio superior, inferior y lateral */
+  min-height: 100vh;
+  background-color: var(--color-light-bg, #ffffff);
+  color: var(--color-text-dark, #333333);
+}
+
+.section-title {
+  font-size: 2.5em;
+  font-weight: 700;
+  text-align: center;
+  color: var(--color-primary-ui, #5c00b8); /* Púrpura para los títulos */
+  margin-bottom: 60px;
+  text-transform: uppercase;
+}

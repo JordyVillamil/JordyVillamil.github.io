@@ -1,0 +1,112 @@
+/* src/styles/AboutSection.css */
+
+.about-section-container {
+  /* Extiende los estilos base */
+  padding: 80px 10%;
+}
+
+/* --- Bloque ¿Quién Soy? --- */
+.who-i-am-block {
+  display: flex;
+  align-items: center;
+  gap: 50px;
+  margin-bottom: 80px;
+}
+
+.illustration {
+  flex: 0 0 40%; /* Ocupa 40% del ancho, ajusta según la imagen */
+  max-width: 400px;
+}
+
+.illustration p {
+  /* Estilo temporal para el placeholder */
+  background: #f0f0f0;
+  height: 300px; 
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 8px;
+}
+
+.bio-content {
+  flex: 1; /* Ocupa el espacio restante */
+}
+
+.bio-content h3 {
+  font-size: 1.8em;
+  color: var(--color-text-dark, #333);
+  text-align: left;
+  margin-bottom: 20px;
+}
+
+.bio-content p {
+  line-height: 1.6;
+  margin-bottom: 25px;
+}
+
+.cv-button {
+  background-color: var(--color-primary-ui, #5c00b8);
+  color: #ffffff;
+  padding: 10px 25px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 1em;
+  transition: background-color 0.3s;
+}
+
+.cv-button:hover {
+  background-color: #4a0099;
+}
+
+/* --- Bloque ¿Qué Puedo Hacer? (Grid de Capacidades) --- */
+.what-i-do-title {
+  font-size: 1.8em;
+  color: var(--color-text-dark, #333);
+  text-align: left;
+  margin-bottom: 30px;
+}
+
+.capabilities-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 30px;
+}
+
+.capability-card {
+  border: 1px solid var(--color-primary-ui, #5c00b8); /* Borde púrpura */
+  padding: 25px;
+  border-radius: 8px;
+  text-align: center;
+  transition: transform 0.3s;
+}
+
+.capability-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.capability-card h4 {
+  color: var(--color-text-dark, #333);
+  font-size: 1.2em;
+  margin-bottom: 10px;
+}
+
+/* Estilos de íconos temporales (debes reemplazarlos con íconos SVG o FontAwesome) */
+.capability-card i {
+  font-size: 2em;
+  color: var(--color-primary-ui, #5c00b8);
+  margin-bottom: 15px;
+}
+
+/* --- Responsiveness (Ajustes para móviles) --- */
+@media (max-width: 768px) {
+  .who-i-am-block {
+    flex-direction: column;
+    text-align: center;
+  }
+  .bio-content h3,
+  .what-i-do-title {
+    text-align: center;
+  }
+}
