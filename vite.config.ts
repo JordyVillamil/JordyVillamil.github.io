@@ -3,7 +3,7 @@ import react from '@vitejs/plugin-react'
 import path from 'path'
 
 export default defineConfig({
-  base: './',  // Funciona tanto en dev como en producción
+  base: '/portfolio-Jordy-Villamil/',  // Nombre de tu repositorio
   plugins: [react()],
   resolve: {
     alias: {
