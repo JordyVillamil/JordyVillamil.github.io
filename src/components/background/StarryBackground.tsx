@@ -1,6 +1,6 @@
 // src/components/background/StarryBackground.tsx
 import React from 'react';
-import '../styles/HomeSection.css'; // Los estilos del cielo estrellado están aquí
+import '../../styles/HomeSection.css'; // Los estilos del cielo estrellado están aquí
 
 const StarryBackground: React.FC = () => {
   return (
