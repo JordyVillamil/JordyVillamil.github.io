@@ -1,17 +1,17 @@
 // src/sections/SkillsSection.tsx
 import React from 'react';
 import '../styles/SkillsSection.css'; // Crear este archivo
-import htmllogo from '../assets/html-logo.png'; 
-import csslogo from '../assets/css-logo.png';
-import jslogo from '../assets/js-logo.png';
-import dockerlogo from '../assets/docker-logo.png';
-import angularlogo from '../assets/angular-logo.png';
-import reactlogo from '../assets/react-logo.png';
-import githublogo from '../assets/github-logo.png';
-import pythonlogo from '../assets/python-logo.png';
-import djangologo from '../assets/django-logo.png';
-import devopslogo from '../assets/devops-logo.png';
-import cybersecuritylogo from '../assets/cybersecurity-logo.png';
+import htmllogo from '../assets/logos/html-logo.png'; 
+import csslogo from '../assets/logos/css-logo.png';
+import jslogo from '../assets/logos/js-logo.png';
+import dockerlogo from '../assets/logos/docker-logo.png';
+import angularlogo from '../assets/logos/angular-logo.png';
+import reactlogo from '../assets/logos/react-logo.png';
+import githublogo from '../assets/logos/github-logo.png';
+import pythonlogo from '../assets/logos/python-logo.png';
+import djangologo from '../assets/logos/django-logo.png';
+import devopslogo from '../assets/logos/devops-logo.png';
+import cybersecuritylogo from '../assets/logos/cybersecurity-logo.png';
 
 interface SectionProps {
   id: string; // "habilidades"
