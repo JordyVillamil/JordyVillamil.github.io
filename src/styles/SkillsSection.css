@@ -93,3 +93,10 @@
 .dot.active {
   background-color: #007bff; /* Color del punto activo (azul) */
 }
+
+@media (max-width: 768px) {
+  .skills-grid {
+    flex-direction: column; /* En columna */
+    align-items: center;  /* Centra los items en la columna */
+  }
+}

@@ -67,4 +67,11 @@
   color: var(--color-light, #ffffff);
   font-weight: 500;
   font-size: 1em;
+
+  @media (max-width: 768px) {
+  .skills-grid {
+    flex-direction: column; /* En columna */
+    align-items: center;  /* Centra los items en la columna */
+  }
+}
 }

@@ -44,8 +44,7 @@
 }
 
 .info-item a {
-  color: var(--color-text-dark, #333);
-  text-decoration: none;
+  margin: 0; 
 }
 
 /* --- Panel del Formulario --- */
@@ -106,4 +105,10 @@
   .contact-grid {
     grid-template-columns: 1fr; /* Una sola columna para móviles y tablets */
   }
+  @media (max-width: 768px) {
+  .skills-grid {
+    flex-direction: column; /* En columna */
+    align-items: center;  /* Centra los items en la columna */
+  }
+}
 }
