@@ -1,5 +1,6 @@
 // src/sections/HomeSection.tsx
 import React from 'react';
+import { TypeAnimation } from 'react-type-animation';
 import StarryBackground from '../components/background/StarryBackground';
 import { motion } from 'framer-motion'; // Para las animaciones
 import '../styles/HomeSection.css'; 
@@ -19,7 +20,18 @@ const HomeSection: React.FC<SectionProps> = ({ id }) => {
         animate={{ opacity: 1, x: 0 }}
         transition={{ duration: 1, type: "spring", stiffness: 50 }}
       >
-        <p className="subtitle">Desarrollador fullstack y ethical hacker</p>
+        <TypeAnimation
+          sequence={[
+            'Desarrollador Full-Stack',
+            1500, // Espera 1.5s
+            'Ethical Hacker',
+            1500, // Espera 1.5s
+          ]}
+          wrapper="p"
+          className="subtitle" // Mantenemos tu clase CSS original
+          speed={50}
+          repeat={Infinity}
+        />
         <h1 className="name-title">
           JORDY FABIAN
         </h1>
@@ -28,7 +40,7 @@ const HomeSection: React.FC<SectionProps> = ({ id }) => {
         </h2>
       </motion.div>
       
-      {/* Aquí puedes añadir los íconos de redes sociales */}
+      {/fa:github-square/fa:linkedin-square/fa:whatsapp}
       <div className="social-links">
         {/* ... */}
       </div>
