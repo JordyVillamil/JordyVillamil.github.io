@@ -2,13 +2,13 @@
 import React from 'react';
 import '../styles/SkillsSection.css'; // Crear este archivo
 import htmllogo from '../assets/logos/htmllogo.png'; 
-import csslogo from '../assets/logos/csslogo.png';
-import jslogo from '../assets/logos/jslogo.png';
+import csslogo from '../assets/logos/csslogo.jpg';
+import jslogo from '../assets/logos/jslogo.jpg';
 import dockerlogo from '../assets/logos/docker-logo.png';
 import angularlogo from '../assets/logos/angular-logo.png';
-import reactlogo from '../assets/logos/reactlogo.png';
+import reactlogo from '../assets/logos/reactlogo.jpg';
 import githublogo from '../assets/logos/github-logo.png';
-import pythonlogo from '../assets/logos/pythonlogo.png';
+import pythonlogo from '../assets/logos/pythonlogo.jpg';
 import djangologo from '../assets/logos/djangologo.png';
 import devopslogo from '../assets/logos/agile-devops.png';
 import cybersecuritylogo from '../assets/logos/CIBERSECURITYLOGO.png';
