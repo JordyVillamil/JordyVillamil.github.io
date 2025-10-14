@@ -1,68 +1,95 @@
 /* src/styles/SkillsSection.css */
 
+/* Contenedor principal de la sección */
 .skills-section-container {
-  /* Extiende los estilos base, pero con un padding diferente si lo necesitas */
-  padding: 80px 10%;
-  background-color: #f7f7f7; /* Un gris muy claro para diferenciarla un poco */
+  width: 100%;
+  padding: 60px 20px;
+  background-color: #ffffff; /* Fondo blanco */
+  box-sizing: border-box;
 }
 
-.specialty-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-  gap: 40px;
-  margin-top: 40px;
+/* Contenido centrado */
+.section-content {
+  max-width: 1200px;
+  margin: 0 auto;
+  text-align: center;
 }
 
-.specialty-card {
-  padding: 30px;
-  background-color: #ffffff;
-  border-radius: 10px;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
-  border-top: 5px solid var(--color-primary-ui, #5c00b8); /* Barra de color */
-  transition: all 0.3s ease;
+/* Título "Mis Habilidades" */
+.section-title {
+  font-size: 2.5rem; /* Tamaño del título */
+  margin-bottom: 40px;
+  color: #333;
 }
 
-.specialty-card:hover {
-  transform: translateY(-8px);
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
-}
-
-.card-header {
+/* Contenedor principal de los logos */
+.skills-grid {
   display: flex;
-  align-items: center;
-  margin-bottom: 20px;
+  flex-wrap: wrap; /* Permite que los logos pasen a la siguiente línea si no caben */
+  justify-content: center; /* Centra los logos horizontalmente */
+  gap: 30px; /* Espacio entre cada logo */
 }
 
+/* Contenedor para un logo + su texto */
+.skill-item {
+  display: flex;
+  flex-direction: column; /* Apila el logo (arriba) y el texto (abajo) */
+  align-items: center; /* Centra ambos horizontalmente */
+  min-width: 100px; /* Un ancho mínimo para cada item */
+}
+
+/* El div que contiene solo al logo */
 .skill-icon {
-  font-size: 2.5em; /* Tamaño del ícono (emoji) */
-  margin-right: 15px;
+  margin-bottom: 15px; /* Espacio entre el logo y el texto */
 }
 
-.specialty-card h3 {
-  font-size: 1.4em;
-  color: var(--color-primary-ui, #5c00b8);
-  text-align: left;
+/* La imagen del logo en sí */
+.skill-logo {
+  width: 50px; /* Tamaño del logo */
+  height: 50px;
+  object-fit: contain; /* Asegura que la imagen se escale bien */
+  
+  /* ESTA ES LA PARTE CLAVE (COMO EN TU IMAGEN DE EJEMPLO) */
+  filter: grayscale(100%); /* Pone el logo en escala de grises */
+  opacity: 0.7; /* Lo hace un poco más sutil */
+  transition: all 0.3s ease; /* Transición suave para el hover */
+}
+
+/* Efecto al pasar el mouse sobre el logo */
+.skill-item:hover .skill-logo {
+  filter: grayscale(0%); /* Le devuelve el color */
+  opacity: 1;
+  transform: scale(1.1); /* Lo hace un poco más grande */
+}
+
+/* El texto (nombre de la habilidad) */
+.skill-item p {
   margin: 0;
-}
-
-.skill-description {
-  line-height: 1.5;
-  margin-bottom: 20px;
-  font-size: 0.95em;
-}
-
-.tech-tags {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 10px;
-  margin-top: 15px;
-}
-
-.tech-tag {
-  background-color: #e0e0ff; /* Fondo claro para el tag */
-  color: #4a0099;
-  padding: 5px 12px;
-  border-radius: 20px;
-  font-size: 0.85em;
+  font-size: 0.8rem;
   font-weight: 600;
+  color: #555;
+  text-transform: uppercase; /* Pone el texto en mayúsculas */
+  letter-spacing: 0.5px;
+}
+
+/* --- ESTILOS DE PAGINACIÓN (COMO EN TU IMAGEN) --- */
+
+.skills-pagination {
+  margin-top: 40px;
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+}
+
+.dot {
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background-color: #d1d1d1; /* Color de los puntos inactivos */
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.dot.active {
+  background-color: #007bff; /* Color del punto activo (azul) */
 }
