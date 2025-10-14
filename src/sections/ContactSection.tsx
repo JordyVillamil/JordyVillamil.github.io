@@ -21,12 +21,12 @@ const ContactSection: React.FC<SectionProps> = ({ id }) => {
           <p>Estoy disponible para nuevos proyectos, consultas o simplemente para charlar sobre ciberseguridad y desarrollo de software. ¡Envíame un mensaje o contáctame directamente!</p>
           
           <div className="info-item">
-            <span className="info-icon">📞</span>
+            <span className="info-icon">fa:phone-square</span>
             <p><strong>Teléfono:</strong> <a href="tel:+573204254287">+57 320 425 4287</a></p>
           </div>
 
           <div className="info-item">
-            <span className="info-icon">📧</span>
+            <span className="info-icon">fa:envelope</span>
             <p><strong>Email:</strong> <a href="mailto:jordyvillamilletras@gmail.com">jordyvillamilletras@gmail.com</a></p>
           </div>
           
