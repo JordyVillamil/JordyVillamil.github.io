@@ -9,7 +9,7 @@
   position: relative;
   overflow: hidden;
   padding: 0 10%;
-  font-family: var(--font-code); 
+  font-family: var(--Bauhaus93-code); 
   color: var(--color-light-bg);
   background-color: var(--color-dark-bg); 
 }
