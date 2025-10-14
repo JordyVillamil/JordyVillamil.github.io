@@ -1,6 +1,7 @@
 // src/sections/AboutSection.tsx
 import React from 'react';
 import '../styles/AboutSection.css'; // Crear este archivo
+import aboutmelogo from '../assets/logos/aboutme.png';
 
 interface SectionProps {
   id: string; // "acerca-de-mi"
@@ -15,11 +16,11 @@ const AboutSection: React.FC<SectionProps> = ({ id }) => {
       <div className="who-i-am-block">
         <div className="illustration">
           {/* Aquí iría el componente de la ilustración (Image of a developer working on a desktop) */}
-          <p>[Placeholder: Ilustración de desarrollador]</p>
+          <img src={aboutmelogo} alt="ilustracion sobre mi"/>
         </div>
         <div className="bio-content">
           <h3>¿Quién Soy?</h3>
-          <p>Soy Tecnólogo en Análisis y Desarrollo de Software del SENA con una sólida especialización en Ciberseguridad, respaldada por certificaciones profesionales de Google, Universidad de los Andes y una formación en curso en DevOps de IBM. Experiencia en el ciclo de vida de desarrollo seguro (Secure SDLC), análisis de vulnerabilidades, pruebas de penetración y prácticas de CI/CD con Docker. Busco aplicar mis habilidades en desarrollo fullstack (Python, JS) y seguridad para construir soluciones tecnológicas robustas y confiables. Nivel de inglés A2.</p>
+          <p>Soy Desarrollador de Software con una sólida especialización en Ciberseguridad, respaldada por certificaciones profesionales de Google, Universidad de los Andes y una formación en curso en DevOps de IBM. Experiencia en el ciclo de vida de desarrollo seguro (Secure SDLC), análisis de vulnerabilidades, pruebas de penetración y prácticas de CI/CD con Docker. Busco aplicar mis habilidades en desarrollo fullstack (Python, JS) y seguridad para construir soluciones tecnológicas robustas y confiables. Nivel de inglés A2.</p>
           <button className="cv-button">Descargar CV</button>
         </div>
       </div>
