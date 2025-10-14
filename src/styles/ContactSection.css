@@ -33,13 +33,14 @@
 .info-item {
   display: flex;
   align-items: center;
-  margin-bottom: 15px;
+  margin-bottom: 1rem;
 }
 
 .info-icon {
   font-size: 1.5em;
   color: var(--color-primary-ui, #5c00b8);
-  margin-right: 15px;
+  margin-right: 10px;
+  flex-shrink: 0;
 }
 
 .info-item a {

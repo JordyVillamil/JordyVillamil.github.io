@@ -8,7 +8,6 @@ const Navbar: React.FC = () => {
     <header className="navbar-container">
       {/* Logo/Nombre */}
       <a href="#inicio" className="navbar-logo">
-        <span className="logo-text">J</span>
         <FaCoffee className='logo-icon'/>
       </a>
 
