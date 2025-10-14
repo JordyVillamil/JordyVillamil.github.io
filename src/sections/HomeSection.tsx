@@ -33,10 +33,10 @@ const HomeSection: React.FC<SectionProps> = ({ id }) => {
           repeat={Infinity}
         />
         <h1 className="name-title">
-          JORDY
+          JORDY FABIAN
         </h1>
         <h2 className="fullstack-title">
-          VILLAMIL
+          VILLAMIL LETRADO
         </h2>
       </motion.div>
       
