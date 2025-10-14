@@ -20,13 +20,13 @@
 }
 
 .presentation-text .name-title {
-  font-size: 5em;
+  font-size: 4em;
   line-height: 1.1;
   color: var(--color-light-bg);
 }
 
 .presentation-text .fullstack-title {
-  font-size: 6.5em;
+  font-size: 5.5em;
   font-weight: bold;
   color: var(--color-primary-ui);
 }
@@ -59,10 +59,10 @@
     align-items: center;
   }
   .presentation-text .name-title {
-    font-size: 3.5em;
+    font-size: 2.5em;
   }
   .presentation-text .fullstack-title {
-    font-size: 4.5em;
+    font-size: 3.5em;
   }
   .presentation-text .subtitle {
     font-size: 1.2em;
