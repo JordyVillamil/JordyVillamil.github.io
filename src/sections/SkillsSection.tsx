@@ -1,17 +1,17 @@
 // src/sections/SkillsSection.tsx
 import React from 'react';
 import '../styles/SkillsSection.css'; // Crear este archivo
-import htmllogo from '../assets/logos/html-logo.png'; 
-import csslogo from '../assets/logos/css-logo.png';
-import jslogo from '../assets/logos/js-logo.png';
+import htmllogo from '../assets/logos/htmllogo.png'; 
+import csslogo from '../assets/logos/csslogo.png';
+import jslogo from '../assets/logos/jslogo.png';
 import dockerlogo from '../assets/logos/docker-logo.png';
 import angularlogo from '../assets/logos/angular-logo.png';
-import reactlogo from '../assets/logos/react-logo.png';
+import reactlogo from '../assets/logos/reactlogo.png';
 import githublogo from '../assets/logos/github-logo.png';
-import pythonlogo from '../assets/logos/python-logo.png';
-import djangologo from '../assets/logos/django-logo.png';
-import devopslogo from '../assets/logos/devops-logo.png';
-import cybersecuritylogo from '../assets/logos/cybersecurity-logo.png';
+import pythonlogo from '../assets/logos/pythonlogo.png';
+import djangologo from '../assets/logos/djangologo.png';
+import devopslogo from '../assets/logos/agile-devops.png';
+import cybersecuritylogo from '../assets/logos/CIBERSECURITYLOGO.png';
 
 interface SectionProps {
   id: string; // "habilidades"
