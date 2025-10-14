@@ -46,8 +46,9 @@ h1, h2, h3 {
   color: var(--color-primary-ui, #5c00b8); /* Púrpura para los títulos */
   margin-bottom: 60px;
   text-transform: uppercase;
+}
 
-  @media (max-width: 480px) {
+@media (max-width: 480px) {
   .name-title {
     font-size: 2.5rem; /* Mucho más pequeño en móviles */
   }
@@ -55,11 +56,4 @@ h1, h2, h3 {
   .section-title { /* Tus "Mis Habilidades", etc. */
     font-size: 2rem;
   }
-}
-  @media (max-width: 768px) {
-  .skills-grid {
-    flex-direction: column; /* En columna */
-    align-items: center;  /* Centra los items en la columna */
-  }
-}
 }
