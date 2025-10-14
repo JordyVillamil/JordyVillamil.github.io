@@ -23,12 +23,14 @@
   font-size: 4em;
   line-height: 1.1;
   color: var(--color-light-bg);
+  text-align: left;
 }
 
 .presentation-text .fullstack-title {
   font-size: 5.5em;
   font-weight: bold;
   color: var(--color-primary-ui);
+  text-align: left;
 }
 
 .presentation-text .subtitle {
