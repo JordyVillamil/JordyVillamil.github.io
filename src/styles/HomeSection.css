@@ -9,7 +9,7 @@
   position: relative;
   overflow: hidden;
   padding: 0 10%;
-  font-family: var(--Bauhaus93-code); 
+  font-family: var(--consolas-code); 
   color: var(--color-light-bg);
   background-color: var(--color-dark-bg); 
 }
@@ -21,9 +21,10 @@
 
 .presentation-text .name-title {
   font-size: 4em;
-  line-height: 1.1;
+  line-height: 0.9;
   color: var(--color-light-bg);
   text-align: left;
+  margin-bottom: 0;
 }
 
 .presentation-text .fullstack-title {
@@ -31,6 +32,7 @@
   font-weight: bold;
   color: var(--color-primary-ui);
   text-align: left;
+  margin-top: 0;
 }
 
 .presentation-text .subtitle {
