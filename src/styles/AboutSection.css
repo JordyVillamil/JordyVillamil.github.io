@@ -15,6 +15,14 @@
 .illustration {
   flex: 0 0 40%;
   max-width: 400px;
+  border: 2px solid red;
+}
+
+.illustration img {
+  max-width: 100%; /* Asegura que la imagen no sea más ancha que su contenedor padre */
+  height: auto;    /* Mantiene la proporción original de la imagen */
+  display: block;  /* Elimina pequeños espacios que a veces aparecen debajo de las imágenes */
+  border-radius: 8px; /* Si quieres que la imagen tenga esquinas redondeadas como el placeholder */
 }
 
 .illustration p {
