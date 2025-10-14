@@ -1,4 +1,5 @@
 import React from 'react';
+import { FaCoffee } from "react-icons/fa";
 // 🛑 Necesitamos importar el archivo CSS, aunque esté vacío por ahora.
 import '../../styles/Navbar.css'; 
 
@@ -8,7 +9,7 @@ const Navbar: React.FC = () => {
       {/* Logo/Nombre */}
       <a href="#inicio" className="navbar-logo">
         <span className="logo-text">J</span>
-        <span className="logo-icon">fa:coffee</span>
+        <FaCoffee className='logo-icon'/>
       </a>
 
       {/* Enlaces de Navegación */}
