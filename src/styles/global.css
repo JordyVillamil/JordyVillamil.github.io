@@ -56,4 +56,10 @@ h1, h2, h3 {
     font-size: 2rem;
   }
 }
+  @media (max-width: 768px) {
+  .skills-grid {
+    flex-direction: column; /* En columna */
+    align-items: center;  /* Centra los items en la columna */
+  }
+}
 }
