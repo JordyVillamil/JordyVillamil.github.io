@@ -40,7 +40,7 @@ const HomeSection: React.FC<SectionProps> = ({ id }) => {
         </h2>
       </motion.div>
       
-      {/fa:github-square/fa:linkedin-square/fa:whatsapp}
+      {/* Aquí puedes añadir los íconos de redes sociales */}
       <div className="social-links">
         {/* ... */}
       </div>
