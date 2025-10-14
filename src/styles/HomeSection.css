@@ -26,6 +26,7 @@
   color: var(--color-light-bg);
   text-align: left;
   margin-bottom: 0;
+  font-family: 'Franklin Gothic demi';
 }
 
 .presentation-text .fullstack-title {
@@ -34,6 +35,7 @@
   color: var(--color-primary-ui);
   text-align: left;
   margin-top: 0;
+  font-family: Impact;
 }
 
 .presentation-text .subtitle {
@@ -61,15 +63,15 @@
     width: 100%;
   }
   .home-section-container {
-    align-items: left;
+    align-items: center;
   }
   .presentation-text .name-title {
-    font-size: 2.5em;
+    font-size: 1.5em;
   }
   .presentation-text .fullstack-title {
-    font-size: 3.5em;
+    font-size: 2.0em;
   }
   .presentation-text .subtitle {
-    font-size: 1.2em;
+    font-size: 0.8em;
   }
 }
