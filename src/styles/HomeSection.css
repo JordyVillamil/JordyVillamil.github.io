@@ -21,21 +21,21 @@
 }
 
 .presentation-text .name-title {
-  font-size: 4em;
+  font-size: 62.5%;
   line-height: 0.9;
   color: var(--color-light-bg);
   text-align: left;
   margin-bottom: 0;
-  font-family: 'Franklin Gothic demi';
+  font-family: 'Roboto Condensed', sans-serif;
 }
 
 .presentation-text .fullstack-title {
-  font-size: 5.5em;
+  font-size: 40%;
   font-weight: bold;
   color: var(--color-primary-ui);
   text-align: left;
   margin-top: 0;
-  font-family: Impact;
+  font-family: Roboto Condensed, sans-serif;
 }
 
 .presentation-text .subtitle {
