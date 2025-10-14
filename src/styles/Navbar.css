@@ -1,19 +1,12 @@
 /* src/styles/Navbar.css */
 
-/* ---------------------------------------------------------------------- */
-/* --- Navbar Principal --- */
-/* ---------------------------------------------------------------------- */
-
 .navbar-container {
   position: fixed; 
   top: 0;
   left: 0;
   width: 100%;
   height: 60px; 
-  
-  /* Usa la variable global púrpura */
   background-color: var(--color-primary-ui, #5c00b8); 
-  
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -21,10 +14,6 @@
   z-index: 100; 
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
 }
-
-/* ------------------------------------ */
-/* --- Logo --- */
-/* ------------------------------------ */
 
 .navbar-logo {
   font-size: 1.8em;
@@ -36,10 +25,6 @@
 .logo-icon {
   font-size: 1.2em; 
 }
-
-/* ------------------------------------ */
-/* --- Enlaces de Navegación --- */
-/* ------------------------------------ */
 
 .nav-links {
   display: flex;
@@ -59,19 +44,14 @@
   border-bottom: 3px solid var(--color-light, #ffffff);
 }
 
-/* ------------------------------------ */
-/* --- Información de Contacto --- */
-/* ------------------------------------ */
-
-.contact-info span {
-  color: var(--color-light, #ffffff);
-  font-weight: 500;
-  font-size: 1em;
-}
-
+/* FIX: Eliminada la media query de .skills-grid que no pertenecía aquí.
+  ADDED: Responsividad para la barra de navegación.
+*/
 @media (max-width: 768px) {
-  .skills-grid {
-    flex-direction: column; /* En columna */
-    align-items: center;  /* Centra los items en la columna */
+  .nav-links {
+    display: none; /* Ocultamos los links en móvil (se necesitaría un menú hamburguesa) */
+  }
+  .navbar-container {
+    padding: 0 20px; /* Reducimos el padding */
   }
 }
