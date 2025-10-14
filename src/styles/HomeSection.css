@@ -130,10 +130,13 @@
   animation: animStar 50s linear infinite; 
   transform: scale(1.4); 
 
-  @media (max-width: 768px) {
-  .skills-grid {
-    flex-direction: column; /* En columna */
-    align-items: center;  /* Centra los items en la columna */
+  @media (max-width: 480px) {
+  .name-title {
+    font-size: 2.5rem; /* Mucho más pequeño en móviles */
+  }
+
+  .section-title { /* Tus "Mis Habilidades", etc. */
+    font-size: 2rem;
   }
 }
 }
