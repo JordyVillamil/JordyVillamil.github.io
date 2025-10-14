@@ -56,7 +56,7 @@
     width: 100%;
   }
   .home-section-container {
-    align-items: center;
+    align-items: left;
   }
   .presentation-text .name-title {
     font-size: 2.5em;
