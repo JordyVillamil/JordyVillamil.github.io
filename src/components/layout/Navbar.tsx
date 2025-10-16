@@ -14,10 +14,10 @@ const Navbar: React.FC = () => {
       {/* Enlaces de Navegación */}
       <nav className="nav-links">
         {/* Usamos #ID para el smooth scroll de las secciones */}
-        <a href="#inicio" className="nav-item">Inicio</a>
-        <a href="#acerca-de-mi" className="nav-item">Acerca de mí</a>
-        <a href="#portafolio" className="nav-item">Portafolios</a>
-        <a href="#contactame" className="nav-item">Contáctame</a>
+        <a href="#inicio" className="nav-item">Home</a>
+        <a href="#acerca-de-mi" className="nav-item">About me</a>
+        <a href="#portafolio" className="nav-item">Portfolio</a>
+        <a href="#contactame" className="nav-item">Contáct me</a>
       </nav>
 
       {/* Información de Contacto (Derecha) */}

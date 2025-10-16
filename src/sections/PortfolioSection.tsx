@@ -8,7 +8,7 @@ interface SectionProps {
 const PortfolioSection: React.FC<SectionProps> = ({ id }) => {
   return (
     <section id={id} className="portfolio-section-container">
-      <h2 className="section-title">PORTAFOLIO</h2>
+      <h2 className="section-title">PORTFOLIO</h2>
       {/* Contenido de portafolio aquí */}
     </section>
   );
