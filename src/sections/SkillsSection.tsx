@@ -37,7 +37,7 @@ const SkillsSection: React.FC<SectionProps> = ({ id }) => {
   return (
   <section id={id} className="skills-section-container">
     <div className="section-content">
-      <h2 className="section-title">Mis Habilidades</h2>
+      <h2 className="section-title">My Skills</h2>
       <div className="skills-grid">
         {skills.map(skill => (
           <div key={skill.name} className="skill-item">

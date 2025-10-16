@@ -13,17 +13,17 @@ const ContactSection: React.FC<SectionProps> = ({ id }) => {
     
   return (
     <section id={id} className="contact-section-container">
-      <h2 className="section-title">Contáctame</h2>
+      <h2 className="section-title">Contáct me</h2>
 
       <div className="contact-grid">
         {/* Columna de Información de Contacto */}
         <div className="contact-info-panel">
-          <h3>Información Directa</h3>
-          <p>Estoy disponible para nuevos proyectos, consultas o simplemente para charlar sobre ciberseguridad y desarrollo de software. ¡Envíame un mensaje o contáctame directamente!</p>
+          <h3>Direct Information</h3>
+          <p>I am available for new projects, inquiries, or simply to chat about cybersecurity and software development. Send me a message or contact me directly!</p>
           
           <div className="info-item">
             <FaPhoneSquare className="info-icon"/>
-            <p><strong>Teléfono:</strong> <a href="tel:+573204254287">+57 320 425 4287</a></p>
+            <p><strong>Phone Number:</strong> <a href="tel:+573204254287">+57 320 425 4287</a></p>
           </div>
 
           <div className="info-item">
@@ -38,26 +38,26 @@ const ContactSection: React.FC<SectionProps> = ({ id }) => {
         <div className="contact-form-panel">
           <form className="contact-form" action="#" method="POST">
             <div className="form-group">
-              <label htmlFor="name">Nombre Completo</label>
+              <label htmlFor="name">Name</label>
               <input type="text" id="name" name="name" required />
             </div>
 
             <div className="form-group">
-              <label htmlFor="email">Correo Electrónico</label>
+              <label htmlFor="email">Email</label>
               <input type="email" id="email" name="email" required />
             </div>
             
             <div className="form-group">
-              <label htmlFor="subject">Asunto</label>
+              <label htmlFor="subject">Affair</label>
               <input type="text" id="subject" name="subject" required />
             </div>
 
             <div className="form-group">
-              <label htmlFor="message">Mensaje</label>
+              <label htmlFor="message">Message</label>
               <textarea id="message" name="message" rows={5} required></textarea>
             </div>
 
-            <button type="submit" className="submit-button">Enviar Mensaje</button>
+            <button type="submit" className="submit-button">Send Message</button>
           </form>
         </div>
       </div>
