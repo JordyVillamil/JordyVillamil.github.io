@@ -23,7 +23,13 @@
 }
 
 .logo-icon {
+  font-size: 1.8em; 
+  color: var(--color-light, #ffffff);
+}
+
+.logo-icon-home {
   font-size: 1.2em; 
+  color: var(--color-light, #ffffff);
 }
 
 .nav-links {

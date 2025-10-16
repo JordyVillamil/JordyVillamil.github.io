@@ -1,5 +1,5 @@
 import React from 'react';
-import { FaCoffee } from "react-icons/fa";
+import { FaCode, FaWhatsapp } from "react-icons/fa";
 // 🛑 Necesitamos importar el archivo CSS, aunque esté vacío por ahora.
 import '../../styles/Navbar.css'; 
 
@@ -8,7 +8,7 @@ const Navbar: React.FC = () => {
     <header className="navbar-container">
       {/* Logo/Nombre */}
       <a href="#inicio" className="navbar-logo">
-        <FaCoffee className='logo-icon'/>
+        <FaCode className='logo-icon-home'/>
       </a>
 
       {/* Enlaces de Navegación */}
@@ -23,7 +23,9 @@ const Navbar: React.FC = () => {
       {/* Información de Contacto (Derecha) */}
       <div className="contact-info">
         {/* Si eliminas la línea del teléfono, ¡tu Navbar.tsx estará completo! */}
-        <span>(+57) 320 425 42 87</span>
+        <a href="https://wa.me/message/RXBP3IAZHEG7A1" className="whatsapp-link">
+        <FaWhatsapp className='logo-icon'/>
+      </a>
       </div>
     </header>
   );
