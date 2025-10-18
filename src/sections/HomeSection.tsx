@@ -22,7 +22,7 @@ const HomeSection: React.FC<SectionProps> = ({ id }) => {
       >
         <TypeAnimation
           sequence={[
-            'Desarrollador Full-Stack',
+            'Full-Stack Developer',
             1500, // Espera 1.5s
             'Ethical Hacker',
             1500, // Espera 1.5s
