@@ -1,114 +1,381 @@
-/* src/styles/AboutSection.css */
+/* ========================================
+   ABOUT SECTION - Portfolio Jordy Villamil
+   ======================================== */
 
 .about-section-container {
   padding: 80px 10%;
+  background: linear-gradient(135deg, #ffffff 0%, #f5f7fa 100%);
 }
 
-/* --- Bloque ¿Quién Soy? --- */
+/* ========================================
+   WHO I AM BLOCK
+   ======================================== */
+
 .who-i-am-block {
-  display: flex; /* <-- ESTILO DE ESCRITORIO: Pone la imagen y el texto en una fila */
-  align-items: center;
-  gap: 50px;
-  margin-bottom: 80px;
-}
-
-.illustration {
-  flex: 0 0 40%;
-  max-width: 400px;
-  border: 2px solid red;
-}
-
-.illustration img {
-  max-width: 100%; /* Asegura que la imagen no sea más ancha que su contenedor padre */
-  height: auto;    /* Mantiene la proporción original de la imagen */
-  display: block;  /* Elimina pequeños espacios que a veces aparecen debajo de las imágenes */
-  border-radius: 8px; /* Si quieres que la imagen tenga esquinas redondeadas como el placeholder */
-}
-
-.illustration p {
-  background: #f0f0f0;
-  height: 300px; 
   display: flex;
   align-items: center;
-  justify-content: center;
-  border-radius: 8px;
+  gap: 60px;
+  margin-bottom: 100px;
+  max-width: 1200px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
+/* Image Section */
+.illustration {
+  flex: 0 0 45%;
+  max-width: 500px;
+}
+
+.image-wrapper {
+  position: relative;
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
+  background: linear-gradient(135deg, var(--color-primary-ui, #5c00b8), var(--color-primary-dark, #3d007a));
+  padding: 20px;
+}
+
+.image-wrapper img {
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: 12px;
+  position: relative;
+  z-index: 2;
+}
+
+.image-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(135deg, rgba(92, 0, 184, 0.1), rgba(61, 0, 122, 0.1));
+  pointer-events: none;
+}
+
+/* Bio Content */
 .bio-content {
   flex: 1;
 }
 
 .bio-content h3 {
-  font-size: 1.8em;
+  font-size: 2.5rem;
   text-align: left;
-  margin-bottom: 20px;
-}
-
-.bio-content p {
-  line-height: 1.6;
   margin-bottom: 25px;
+  color: var(--color-primary-ui, #5c00b8);
+  position: relative;
+  display: inline-block;
 }
 
+.bio-content h3::after {
+  content: '';
+  position: absolute;
+  bottom: -8px;
+  left: 0;
+  width: 60px;
+  height: 4px;
+  background: linear-gradient(90deg, var(--color-primary-ui, #5c00b8), var(--color-primary-light, #7a33c9));
+  border-radius: 2px;
+}
+
+.bio-description {
+  line-height: 1.8;
+  margin-bottom: 20px;
+  color: var(--color-text-dark, #555);
+  font-size: 1.05rem;
+}
+
+.bio-description strong {
+  color: var(--color-primary-ui, #5c00b8);
+  font-weight: 600;
+}
+
+/* Highlights Grid */
+.highlights-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 15px;
+  margin: 30px 0;
+}
+
+.highlight-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 16px;
+  background: linear-gradient(135deg, #f8f9fa, #ffffff);
+  border-radius: 10px;
+  border: 1px solid #e0e0e0;
+  transition: all 0.3s ease;
+}
+
+.highlight-item:hover {
+  border-color: var(--color-primary-ui, #5c00b8);
+  transform: translateX(5px);
+  box-shadow: 0 4px 12px rgba(92, 0, 184, 0.1);
+}
+
+.check-icon {
+  color: var(--color-primary-ui, #5c00b8);
+  font-size: 1.2rem;
+  flex-shrink: 0;
+}
+
+.highlight-item span {
+  font-size: 0.95rem;
+  color: var(--color-text-dark, #333);
+}
+
+/* CV Button */
 .cv-button {
-  background-color: var(--color-primary-ui, #5c00b8);
-  color: #ffffff;
-  padding: 10px 25px;
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  background: linear-gradient(135deg, var(--color-primary-ui, #5c00b8), var(--color-primary-dark, #3d007a));
+  color: var(--color-light-bg, #ffffff);
+  padding: 14px 32px;
   border: none;
-  border-radius: 5px;
+  border-radius: 12px;
   cursor: pointer;
-  font-size: 1em;
-  transition: background-color 0.3s;
+  font-size: 1.05rem;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(92, 0, 184, 0.3);
+  margin-top: 20px;
 }
 
 .cv-button:hover {
-  background-color: #4a0099;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 25px rgba(92, 0, 184, 0.4);
 }
 
-/* --- Bloque ¿Qué Puedo Hacer? --- */
+.cv-button:active {
+  transform: translateY(0);
+}
+
+/* ========================================
+   WHAT I DO SECTION
+   ======================================== */
+
 .what-i-do-title {
-  font-size: 1.8em;
+  font-size: 2.2rem;
   text-align: center;
-  margin-bottom: 30px;
+  margin-bottom: 60px;
+  color: var(--color-primary-ui, #5c00b8);
+  position: relative;
 }
 
+.what-i-do-title::after {
+  content: '';
+  position: absolute;
+  bottom: -15px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 80px;
+  height: 4px;
+  background: linear-gradient(90deg, var(--color-primary-ui, #5c00b8), var(--color-primary-light, #7a33c9));
+  border-radius: 2px;
+}
+
+/* Capabilities Grid */
 .capabilities-grid {
-  display: grid; /* <-- ESTILO DE ESCRITORIO: Crea un grid para las tarjetas */
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 30px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 40px;
+  max-width: 1200px;
+  margin: 0 auto;
 }
 
+/* Capability Card */
 .capability-card {
-  border: 1px solid var(--color-primary-ui, #5c00b8);
-  padding: 25px;
-  border-radius: 8px;
-  text-align: center;
-  transition: transform 0.3s;
+  position: relative;
+  background: var(--color-light-bg, #ffffff);
+  border: 1px solid #e0e0e0;
+  padding: 35px 30px;
+  border-radius: 20px;
+  transition: all 0.3s ease;
+  overflow: hidden;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
 }
 
 .capability-card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  border-color: var(--color-primary-ui, #5c00b8);
+  box-shadow: 0 10px 40px rgba(92, 0, 184, 0.15);
+  transform: translateY(-10px);
 }
 
-.capability-card h4 {
-  font-size: 1.2em;
-  margin-bottom: 10px;
+/* Card Header */
+.card-header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 20px;
 }
 
-.capability-card i {
-  font-size: 2em;
+.icon-wrapper {
+  width: 80px;
+  height: 80px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 20px;
+  margin-bottom: 20px;
+  transition: all 0.3s ease;
+}
+
+.capability-card:hover .icon-wrapper {
+  transform: scale(1.1) rotate(5deg);
+}
+
+.capability-icon {
+  font-size: 2.5rem;
+}
+
+.card-header h4 {
+  font-size: 1.5rem;
+  text-align: center;
+  margin: 0;
+  color: var(--color-text-dark, #333);
+}
+
+/* Description */
+.capability-description {
+  line-height: 1.7;
+  color: var(--color-text-dark, #555);
+  text-align: justify;
+  margin-bottom: 20px;
+  font-size: 0.95rem;
+}
+
+/* Tech Stack */
+.tech-stack {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  margin-top: 25px;
+  padding-top: 20px;
+  border-top: 1px solid #e0e0e0;
+}
+
+.tech-icon {
+  font-size: 2rem;
+  color: var(--color-text-dark, #666);
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.tech-icon:hover {
   color: var(--color-primary-ui, #5c00b8);
-  margin-bottom: 15px;
 }
 
-/* --- RESPONSIVIDAD (Ajustes para móviles) --- */
-@media (max-width: 768px) {
+/* Card Accent */
+.card-accent {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 4px;
+  height: 100%;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.capability-card:hover .card-accent {
+  opacity: 1;
+}
+
+/* ========================================
+   RESPONSIVE
+   ======================================== */
+
+@media (max-width: 992px) {
   .who-i-am-block {
-    flex-direction: column; /* Apila la imagen y el texto verticalmente */
+    gap: 40px;
+  }
+
+  .capabilities-grid {
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 30px;
+  }
+}
+
+@media (max-width: 768px) {
+  .about-section-container {
+    padding: 60px 5%;
+  }
+
+  .who-i-am-block {
+    flex-direction: column;
+    text-align: center;
+    gap: 40px;
+    margin-bottom: 60px;
+  }
+
+  .illustration {
+    flex: none;
+    max-width: 100%;
+  }
+
+  .bio-content h3 {
+    font-size: 2rem;
     text-align: center;
   }
-  .bio-content h3,
-  .what-i-do-title {
+
+  .bio-content h3::after {
+    left: 50%;
+    transform: translateX(-50%);
+  }
+
+  .bio-description {
     text-align: center;
+  }
+
+  .highlights-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .cv-button {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .what-i-do-title {
+    font-size: 1.8rem;
+  }
+
+  .capabilities-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 480px) {
+  .about-section-container {
+    padding: 40px 5%;
+  }
+
+  .bio-content h3 {
+    font-size: 1.75rem;
+  }
+
+  .what-i-do-title {
+    font-size: 1.6rem;
+  }
+
+  .capability-card {
+    padding: 25px 20px;
+  }
+
+  .icon-wrapper {
+    width: 70px;
+    height: 70px;
+  }
+
+  .capability-icon {
+    font-size: 2rem;
+  }
+
+  .card-header h4 {
+    font-size: 1.3rem;
   }
 }

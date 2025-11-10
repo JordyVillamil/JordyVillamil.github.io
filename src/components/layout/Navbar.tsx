@@ -1,35 +1,125 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { FaCode, FaWhatsapp } from "react-icons/fa";
-// 🛑 Necesitamos importar el archivo CSS, aunque esté vacío por ahora.
-import '../../styles/Navbar.css'; 
+import { HiMenuAlt3, HiX } from "react-icons/hi";
+import '../../styles/Navbar.css';
 
 const Navbar: React.FC = () => {
+  const [isScrolled, setIsScrolled] = useState(false);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [activeSection, setActiveSection] = useState('inicio');
+
+  useEffect(() => {
+    const handleScroll = () => setIsScrolled(window.scrollY > 50);
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  useEffect(() => {
+    const sections = ['inicio', 'acerca-de-mi', 'portafolio', 'contactame'];
+    const handleScroll = () => {
+      const scrollPosition = window.scrollY + 100;
+      for (const section of sections) {
+        const element = document.getElementById(section);
+        if (element) {
+          const { offsetTop, offsetHeight } = element;
+          if (scrollPosition >= offsetTop && scrollPosition < offsetTop + offsetHeight) {
+            setActiveSection(section);
+            break;
+          }
+        }
+      }
+    };
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  const navItems = [
+    { href: '#inicio', label: 'Home', id: 'inicio' },
+    { href: '#acerca-de-mi', label: 'About', id: 'acerca-de-mi' },
+    { href: '#portafolio', label: 'Portfolio', id: 'portafolio' },
+    { href: '#contactame', label: 'Contact', id: 'contactame' },
+  ];
+
+  const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
+    e.preventDefault();
+    document.querySelector(href)?.scrollIntoView({ behavior: 'smooth' });
+    setIsMobileMenuOpen(false);
+  };
+
   return (
-    <header className="navbar-container">
-      {/* Logo/Nombre */}
-      <a href="#inicio" className="navbar-logo">
-        <FaCode className='logo-icon-home'/>
-      </a>
+    <>
+      <header className={`navbar-container ${isScrolled ? 'navbar-scrolled' : ''}`}>
+        <div className="navbar-content">
+          <a href="#inicio" onClick={(e) => handleNavClick(e, '#inicio')} className="navbar-logo">
+            <div className="logo-wrapper">
+              <FaCode className="logo-icon-home" />
+            </div>
+            <span className="logo-text">
+              JV<span className="logo-accent">.dev</span>
+            </span>
+          </a>
 
-      {/* Enlaces de Navegación */}
-      <nav className="nav-links">
-        {/* Usamos #ID para el smooth scroll de las secciones */}
-        <a href="#inicio" className="nav-item">Home</a>
-        <a href="#acerca-de-mi" className="nav-item">About me</a>
-        <a href="#portafolio" className="nav-item">Portfolio</a>
-        <a href="#contactame" className="nav-item">Contáct me</a>
-      </nav>
+          <nav className="nav-links">
+            {navItems.map((item) => (
+              <a
+                key={item.id}
+                href={item.href}
+                onClick={(e) => handleNavClick(e, item.href)}
+                className={`nav-item ${activeSection === item.id ? 'active' : ''}`}
+              >
+                {item.label}
+              </a>
+            ))}
+          </nav>
 
-      {/* Información de Contacto (Derecha) */}
-      <div className="contact-info">
-        {/* Si eliminas la línea del teléfono, ¡tu Navbar.tsx estará completo! */}
-        <a href="https://wa.me/message/RXBP3IAZHEG7A1" className="whatsapp-link">
-        <FaWhatsapp className='logo-icon'/>
-      </a>
-      </div>
-    </header>
+          <div className="navbar-actions">
+            <a
+              href="https://wa.me/message/RXBP3IAZHEG7A1"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="whatsapp-link"
+            >
+              <FaWhatsapp className="logo-icon" />
+            </a>
+            <button onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)} className="mobile-menu-btn">
+              {isMobileMenuOpen ? <HiX size={24} /> : <HiMenuAlt3 size={24} />}
+            </button>
+          </div>
+        </div>
+      </header>
+
+      {isMobileMenuOpen && (
+        <>
+          <div className="mobile-backdrop" onClick={() => setIsMobileMenuOpen(false)} />
+          <div className="mobile-menu">
+            <div className="mobile-menu-header">
+              <button onClick={() => setIsMobileMenuOpen(false)} className="mobile-close-btn">
+                <HiX size={24} />
+              </button>
+            </div>
+            <nav className="mobile-nav">
+              {navItems.map((item) => (
+                <a
+                  key={item.id}
+                  href={item.href}
+                  onClick={(e) => handleNavClick(e, item.href)}
+                  className={`mobile-nav-item ${activeSection === item.id ? 'active' : ''}`}
+                >
+                  {item.label}
+                </a>
+              ))}
+            </nav>
+            <div className="mobile-whatsapp">
+              <a href="https://wa.me/message/RXBP3IAZHEG7A1" target="_blank" rel="noopener noreferrer" className="mobile-whatsapp-btn">
+                <FaWhatsapp size={20} />
+                <span>WhatsApp</span>
+              </a>
+            </div>
+          </div>
+        </>
+      )}
+    </>
   );
 };
 
-// 🌟 ¡Esta línea resuelve el error "has no default export"!
 export default Navbar;
