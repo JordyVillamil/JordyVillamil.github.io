@@ -1,59 +1,127 @@
 /* src/styles/global.css */
 
-/* Variables de Color (para un diseño consistente y fácil de cambiar) */
+/* ========================================
+   TAILWIND DIRECTIVES
+   ======================================== */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ========================================
+   VARIABLES GLOBALES
+   ======================================== */
 :root {
-  --color-dark-bg: #090A0F;    /* El color más oscuro para el fondo estrellado */
-  --color-light-bg: #ffffff;   /* Fondo blanco/claro para el resto de secciones */
-  --color-primary-ui: #5c00b8; /* El púrpura de la Navbar y títulos */
-  --color-text-dark: #333333;  /* Texto oscuro general */
-  --font-code: 'Consolas', 'Courier New', monospace; 
+  /* Colores de fondo */
+  --color-dark-bg: #090A0F;
+  --color-light-bg: #ffffff;
+  
+  /* Color primario (púrpura) */
+  --color-primary-ui: #5c00b8;
+  --color-primary-dark: #3d007a;
+  --color-primary-light: #7a33c9;
+  
+  /* Colores de texto */
+  --color-text-dark: #333333;
+  --color-text-light: #ffffff;
+  
+  /* Fuentes */
+  --font-code: 'Consolas', 'Courier New', monospace;
+  --font-main: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+  
+  /* Espaciado */
+  --navbar-height: 80px;
 }
 
+/* ========================================
+   RESET Y BASE
+   ======================================== */
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  scroll-behavior: smooth; /* Para el scroll suave entre secciones */
 }
 
-/* El fondo por defecto del cuerpo es claro, solo la sección Home será oscura */
+html {
+  scroll-behavior: smooth;
+}
+
 body {
-  font-family: Arial, sans-serif;
-  background-color: var(--color-light-bg); 
+  font-family: var(--font-main);
+  background-color: var(--color-light-bg);
+  color: var(--color-text-dark);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* ========================================
+   SECCIONES BASE
+   ======================================== */
+section {
+  scroll-margin-top: var(--navbar-height);
+}
+
+.section-base {
+  padding: 80px 10%;
+  min-height: 100vh;
+  background-color: var(--color-light-bg);
   color: var(--color-text-dark);
 }
 
-/* Estilo para los títulos de las secciones, usando el púrpura */
+/* ========================================
+   TIPOGRAFÍA
+   ======================================== */
 h1, h2, h3 {
   color: var(--color-text-dark);
   text-align: center;
   margin-bottom: 30px;
 }
 
-/* src/styles/global.css (Adiciones) */
-
-.section-base {
-  padding: 80px 10%; /* Espacio superior, inferior y lateral */
-  min-height: 100vh;
-  background-color: var(--color-light-bg, #ffffff);
-  color: var(--color-text-dark, #333333);
-}
-
 .section-title {
   font-size: 2.5em;
   font-weight: 700;
   text-align: center;
-  color: var(--color-primary-ui, #5c00b8); /* Púrpura para los títulos */
+  color: var(--color-primary-ui);
   margin-bottom: 60px;
   text-transform: uppercase;
 }
 
+.name-title {
+  font-size: 3rem;
+  font-weight: bold;
+}
+
+/* ========================================
+   RESPONSIVE
+   ======================================== */
+@media (max-width: 768px) {
+  .section-base {
+    padding: 60px 5%;
+  }
+  
+  .section-title {
+    font-size: 2rem;
+    margin-bottom: 40px;
+  }
+}
+
 @media (max-width: 480px) {
   .name-title {
-    font-size: 2.5rem; /* Mucho más pequeño en móviles */
+    font-size: 2.5rem;
   }
 
-  .section-title { /* Tus "Mis Habilidades", etc. */
-    font-size: 2rem;
+  .section-title {
+    font-size: 1.75rem;
   }
+  
+  .section-base {
+    padding: 40px 5%;
+  }
+}
+
+/* ========================================
+   UTILIDADES
+   ======================================== */
+.no-scroll {
+  overflow: hidden;
+  height: 100vh;
 }

@@ -1,103 +1,352 @@
 // src/sections/PortfolioSection.tsx
-import React from 'react';
-import '../styles/PortfolioSection.css'; 
+import React, { useState, useRef, useEffect } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
+import { FaGithub, FaExternalLinkAlt, FaCode, FaRocket } from 'react-icons/fa';
+import '../styles/PortfolioSection.css';
 
-// 🛑 PASO 1: IMPORTAR LA IMAGEN COMO MÓDULO.
-// Vite convertirá esto en la URL de la imagen en tu carpeta 'dist/assets'.
+// Imports de imágenes
 import EduGestion360gif from '../assets/previews/EduGestion360.gif';
 import TimePiecesgif from '../assets/previews/TimePieces.gif';
 import EWEADNgif from '../assets/previews/EWEADN.gif';
-import type { image } from 'framer-motion/client';
 
 interface SectionProps {
-  id: string; // "portafolio"
+  id: string;
 }
 
-// 🛑 Array de Datos con Ruta Corregida 🛑
-const projects = [
-  {
-    title: 'Proyecto #1: EduGestion360',
-    description: 'plataforma web full-stack e integral de gestión académica, diseñada para centralizar y optimizar la comunicación y los procesos entre directivos, docentes y estudiantes. El proyecto está 100% contenedorizado con Docker.',
-    tags: ['React', 'Django', 'Python', 'mySQL', 'Django REST Framework', 'Docker', 'tailwindcss'],
-    githubLink: 'https://github.com/JordyVillamil/EduGestion360', 
-    previewLink: 'https://github.com/JordyVillamil/EduGestion360', 
-    
-    // ✅ PASO 2: ASIGNAR LA VARIABLE IMPORTADA como la fuente de la imagen.
-    image: EduGestion360gif // Usamos la variable importada arriba
-  },
+interface Project {
+  title: string;
+  subtitle: string;
+  description: string;
+  tags: string[];
+  githubLink: string;
+  previewLink: string;
+  image: string;
+  featured?: boolean;
+  year: string;
+}
 
-  {
-    title: 'Proyecto #2: TimePieces',
-    description: 'Un portafolio de relojes experimental que fusiona un diseño 3D interactivo (React-Three-Fiber) con un backend robusto (Django). El proyecto demuestra un flujo de trabajo DevOps completo, desde la containerización con Docker hasta el despliegue CI/CD automatizado en Vercel y Render.',
-    tags: ['Next.js / React (App Router)', 'Django', 'Python', 'mySQL', 'Django REST Framework', 'Docker', 'tailwindcss', 'React-Three-Fiber', 'Three.js', 'Vercel', 'Render', 'CI/CD'],
-    githubLink: 'https://github.com/JordyVillamil/timepieces-portfolio', 
-    previewLink: 'https://github.com/JordyVillamil/timepieces-portfolio', 
-    
-    // ✅ PASO 2: ASIGNAR LA VARIABLE IMPORTADA como la fuente de la imagen.
-    image: TimePiecesgif // Usamos la variable importada arriba
-  },
+// Componente de imagen con lazy loading optimizado
+const LazyImage: React.FC<{
+  src: string;
+  alt: string;
+  className: string;
+}> = ({ src, alt, className }) => {
+  const [isLoaded, setIsLoaded] = useState(false);
+  const [isInView, setIsInView] = useState(false);
+  const imgRef = useRef<HTMLImageElement>(null);
 
-   {
-    title: 'Proyecto #3: EWEADN',
-    description: 'Proyecto demo que demuestra la implementación de una landing page moderna con video de fondo (video hero), una de las tendencias más populares en diseño web actual. Desarrollado con las tecnologías más demandadas del mercado: React, TypeScript, Tailwind CSS v4 y Framer Motion.',
-    tags: ['React', 'TypeScript', 'Vite', 'Framer Motion', 'Iconify', 'Lucide React', 'GitHub'],
-    githubLink: 'https://github.com/JordyVillamil/EWEADN', 
-    previewLink: 'https://github.com/JordyVillamil/EWEADN', 
-    
-    // ✅ PASO 2: ASIGNAR LA VARIABLE IMPORTADA como la fuente de la imagen.
-    image: EWEADNgif // Usamos la variable importada arriba
-  },
+  useEffect(() => {
+    if (!imgRef.current) return;
 
-  
-];
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            setIsInView(true);
+            observer.disconnect();
+          }
+        });
+      },
+      {
+        rootMargin: '50px',
+      }
+    );
+
+    observer.observe(imgRef.current);
+
+    return () => observer.disconnect();
+  }, []);
+
+  return (
+    <div ref={imgRef} className="project-image-wrapper">
+      {isInView && (
+        <img
+          src={src}
+          alt={alt}
+          className={`${className} ${isLoaded ? 'loaded' : 'loading'}`}
+          onLoad={() => setIsLoaded(true)}
+          loading="lazy"
+        />
+      )}
+      {!isLoaded && (
+        <div className="image-skeleton">
+          <div className="skeleton-shimmer"></div>
+        </div>
+      )}
+    </div>
+  );
+};
 
 const PortfolioSection: React.FC<SectionProps> = ({ id }) => {
-  return (
-    <section id={id} className="portfolio-section-container section-base">
-      <h2 className="section-title">PORTAFOLIO</h2>
+  const [filter, setFilter] = useState<'all' | 'featured'>('all');
 
-      <div className="portfolio-grid">
-        {projects.map((project, index) => (
-          <div className="project-card" key={index}>
-            <div className="project-image-container">
-              <img 
-                src={project.image} 
-                alt={`Preview de ${project.title}`} 
-                className="project-image"
-              />
-            </div>
-            
-            <div className="project-details">
-              <h3>{project.title}</h3>
-              <p>{project.description}</p>
-              
-              <div className="project-tags">
-                {project.tags.map(tag => (
-                  <span key={tag} className="tag-item">{tag}</span>
-                ))}
-              </div>
-              
-              <div className="project-links">
-                <a 
-                  href={project.previewLink} 
-                  target="_blank" 
-                  rel="noopener noreferrer"
-                  className="btn-preview"
-                >
-                  Ver Demo
-                </a>
-                <a 
-                  href={project.githubLink} 
-                  target="_blank" 
-                  rel="noopener noreferrer"
-                  className="btn-github"
-                >
-                  Código Fuente
-                </a>
-              </div>
-            </div>
-          </div>
-        ))}
+  const projects: Project[] = [
+    {
+      title: 'EduGestion360',
+      subtitle: 'Academic Management Platform',
+      description: 'Full-stack web platform for comprehensive academic management, designed to centralize and optimize communication and processes between directors, teachers and students. The project is 100% containerized with Docker.',
+      tags: ['React', 'Django', 'Python', 'MySQL', 'REST API', 'Docker', 'Tailwind CSS'],
+      githubLink: 'https://github.com/JordyVillamil/EduGestion360',
+      previewLink: 'https://github.com/JordyVillamil/EduGestion360',
+      image: EduGestion360gif,
+      featured: true,
+      year: '2024'
+    },
+    {
+      title: 'TimePieces',
+      subtitle: 'Interactive 3D Watch Portfolio',
+      description: 'An experimental watch portfolio that merges interactive 3D design (React-Three-Fiber) with a robust backend (Django). The project demonstrates a complete DevOps workflow, from containerization with Docker to automated CI/CD deployment on Vercel and Render.',
+      tags: ['Next.js', 'React', 'Django', 'Three.js', 'MySQL', 'Docker', 'Tailwind', 'Vercel', 'CI/CD'],
+      githubLink: 'https://github.com/JordyVillamil/timepieces-portfolio',
+      previewLink: 'https://github.com/JordyVillamil/timepieces-portfolio',
+      image: TimePiecesgif,
+      featured: true,
+      year: '2024'
+    },
+    {
+      title: 'EWEADN',
+      subtitle: 'Modern Video Hero Landing',
+      description: 'Demo project showcasing implementation of a modern landing page with video background (video hero), one of the most popular trends in current web design. Developed with the most demanded technologies: React, TypeScript, Tailwind CSS v4 and Framer Motion.',
+      tags: ['React', 'TypeScript', 'Vite', 'Framer Motion', 'Iconify', 'Tailwind v4'],
+      githubLink: 'https://github.com/JordyVillamil/EWEADN',
+      previewLink: 'https://github.com/JordyVillamil/EWEADN',
+      image: EWEADNgif,
+      featured: false,
+      year: '2025'
+    }
+  ];
+
+  const filteredProjects = filter === 'featured' 
+    ? projects.filter(p => p.featured) 
+    : projects;
+
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.15,
+        delayChildren: 0.1
+      }
+    },
+    exit: {
+      opacity: 0,
+      transition: { duration: 0.3 }
+    }
+  };
+
+  const cardVariants = {
+    hidden: { 
+      opacity: 0, 
+      y: 40,
+      scale: 0.95
+    },
+    visible: {
+      opacity: 1,
+      y: 0,
+      scale: 1,
+      transition: { 
+        duration: 0.5,
+        ease: [0.4, 0, 0.2, 1]
+      }
+    },
+    exit: {
+      opacity: 0,
+      y: -20,
+      scale: 0.95,
+      transition: { duration: 0.3 }
+    }
+  };
+
+  return (
+    <section id={id} className="portfolio-section-container">
+      <div className="section-content">
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-100px" }}
+          transition={{ duration: 0.6 }}
+        >
+          <h2 className="section-title">Portfolio</h2>
+          <p className="section-subtitle">
+            A showcase of my recent projects and experiments in web development
+          </p>
+        </motion.div>
+
+        {/* Filter Buttons */}
+        <motion.div
+          className="portfolio-filters"
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-100px" }}
+          transition={{ duration: 0.6, delay: 0.15 }}
+        >
+          <motion.button
+            className={`filter-btn ${filter === 'all' ? 'active' : ''}`}
+            onClick={() => setFilter('all')}
+            whileHover={{ scale: 1.03 }}
+            whileTap={{ scale: 0.97 }}
+          >
+            <FaCode />
+            <span>All Projects ({projects.length})</span>
+          </motion.button>
+          <motion.button
+            className={`filter-btn ${filter === 'featured' ? 'active' : ''}`}
+            onClick={() => setFilter('featured')}
+            whileHover={{ scale: 1.03 }}
+            whileTap={{ scale: 0.97 }}
+          >
+            <FaRocket />
+            <span>Featured ({projects.filter(p => p.featured).length})</span>
+          </motion.button>
+        </motion.div>
+
+        {/* Projects Grid */}
+        <AnimatePresence mode="wait">
+          <motion.div
+            key={filter}
+            className="portfolio-grid"
+            variants={containerVariants}
+            initial="hidden"
+            animate="visible"
+            exit="exit"
+          >
+            {filteredProjects.map((project) => (
+              <motion.article
+                key={project.title}
+                className="project-card"
+                variants={cardVariants}
+                layout
+              >
+                {/* Featured Badge */}
+                {project.featured && (
+                  <motion.div 
+                    className="featured-badge"
+                    initial={{ scale: 0, rotate: -20 }}
+                    animate={{ scale: 1, rotate: 0 }}
+                    transition={{ 
+                      type: "spring", 
+                      stiffness: 260,
+                      damping: 20,
+                      delay: 0.3
+                    }}
+                  >
+                    <FaRocket /> Featured
+                  </motion.div>
+                )}
+
+                {/* Project Image */}
+                <div className="project-image-container">
+                  <LazyImage
+                    src={project.image}
+                    alt={`Preview of ${project.title} - ${project.subtitle}`}
+                    className="project-image"
+                  />
+                  <div className="image-overlay">
+                    <div className="overlay-content">
+                      <motion.a
+                        href={project.previewLink}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="overlay-btn"
+                        aria-label={`View ${project.title} demo`}
+                        whileHover={{ scale: 1.15, rotate: 5 }}
+                        whileTap={{ scale: 0.9 }}
+                      >
+                        <FaExternalLinkAlt />
+                      </motion.a>
+                      <motion.a
+                        href={project.githubLink}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="overlay-btn"
+                        aria-label={`View ${project.title} source code`}
+                        whileHover={{ scale: 1.15, rotate: -5 }}
+                        whileTap={{ scale: 0.9 }}
+                      >
+                        <FaGithub />
+                      </motion.a>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Project Details */}
+                <div className="project-details">
+                  <div className="project-header">
+                    <div>
+                      <h3 className="project-title">{project.title}</h3>
+                      <p className="project-subtitle">{project.subtitle}</p>
+                    </div>
+                    <span className="project-year">{project.year}</span>
+                  </div>
+
+                  <p className="project-description">{project.description}</p>
+
+                  {/* Tags */}
+                  <div className="project-tags">
+                    {project.tags.map(tag => (
+                      <motion.span 
+                        key={tag} 
+                        className="tag-item"
+                        whileHover={{ scale: 1.05, y: -2 }}
+                        transition={{ type: "spring", stiffness: 400 }}
+                      >
+                        {tag}
+                      </motion.span>
+                    ))}
+                  </div>
+
+                  {/* Action Buttons */}
+                  <div className="project-links">
+                    <motion.a
+                      href={project.previewLink}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="btn-preview"
+                      whileHover={{ scale: 1.03, y: -3 }}
+                      whileTap={{ scale: 0.97 }}
+                    >
+                      <FaExternalLinkAlt />
+                      <span>View Demo</span>
+                    </motion.a>
+                    <motion.a
+                      href={project.githubLink}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="btn-github"
+                      whileHover={{ scale: 1.03, y: -3 }}
+                      whileTap={{ scale: 0.97 }}
+                    >
+                      <FaGithub />
+                      <span>Source Code</span>
+                    </motion.a>
+                  </div>
+                </div>
+              </motion.article>
+            ))}
+          </motion.div>
+        </AnimatePresence>
+
+        {/* CTA Section */}
+        <motion.div
+          className="portfolio-cta"
+          initial={{ opacity: 0, y: 40 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-100px" }}
+          transition={{ duration: 0.6 }}
+        >
+          <h3>Interested in working together?</h3>
+          <p>I'm always open to discussing new projects and creative ideas.</p>
+          <motion.a
+            href="#contactame"
+            className="cta-button"
+            whileHover={{ scale: 1.05, y: -4 }}
+            whileTap={{ scale: 0.95 }}
+            transition={{ type: "spring", stiffness: 400 }}
+          >
+            Get In Touch
+          </motion.a>
+        </motion.div>
       </div>
     </section>
   );
