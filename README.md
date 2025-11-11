@@ -373,7 +373,7 @@ Este proyecto es de uso personal. Todos los derechos reservados © 2025 Jordy Fa
 
 **Jordy Fabián Villamil Letrado**
 
-- 🌐 Portfolio: [https://JordyVillamil.github.io/portfolio-Jordy-Villamil](https://JordyVillamil.github.io/portfolio-Jordy-Villamil)
+- 🌐 Portfolio: [https://JordyVillamil.github.io](https://JordyVillamil.github.io)
 - 💼 GitHub: [@JordyVillamil](https://github.com/JordyVillamil)
 - 📫 Email: [jordyvillamilletras@gmail.com]
 - 💼 LinkedIn: [Jordy-Villamil](https://www.linkedin.com/in/jordy-fabian-villamil-letrado-32378b232/)
