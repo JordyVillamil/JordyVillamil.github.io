@@ -1,13 +1,14 @@
 /* ========================================
    CONTACT SECTION - Portfolio Jordy Villamil
+   VERSIÓN CORREGIDA - Superposición Móvil
    ======================================== */
 
 .contact-section-container {
-  padding: 100px 10% 80px 10%; /* Padding superior aumentado */
+  padding: 100px 10% 80px 10%;
   background: linear-gradient(135deg, #f5f7fa 0%, #ffffff 100%);
   position: relative;
   overflow: hidden;
-  margin: 0 !important; /* Eliminar cualquier margen */
+  margin: 0 !important;
   z-index: 2;
 }
 
@@ -37,7 +38,7 @@
   gap: 60px;
   max-width: 1200px;
   margin: 0 auto;
-  align-items: start; /* Importante: alinear al inicio */
+  align-items: start;
 }
 
 /* ========================================
@@ -51,8 +52,8 @@
   padding: 40px;
   color: #ffffff;
   box-shadow: 0 20px 60px rgba(106, 154, 241, 0.3);
-  height: fit-content; /* Ajustar altura al contenido */
-  overflow: hidden; /* Evitar desbordamiento de decoraciones */
+  height: fit-content;
+  overflow: hidden;
 }
 
 .info-header h3 {
@@ -85,7 +86,7 @@
   margin-bottom: 40px;
   margin-top: 0;
   position: relative;
-  z-index: 2; /* Asegurar que esté sobre las decoraciones */
+  z-index: 2;
 }
 
 .info-item {
@@ -100,7 +101,7 @@
   text-decoration: none;
   color: #ffffff;
   border: 1px solid rgba(255, 255, 255, 0.1);
-  position: relative; /* Asegurar posicionamiento */
+  position: relative;
   z-index: 1;
 }
 
@@ -119,7 +120,7 @@
   justify-content: center;
   border-radius: 12px;
   background: rgba(255, 255, 255, 0.9);
-  flex-shrink: 0; /* Evitar que se encoja */
+  flex-shrink: 0;
 }
 
 .info-icon {
@@ -131,7 +132,7 @@
   flex-direction: column;
   gap: 4px;
   flex: 1;
-  min-width: 0; /* Permite que el texto se ajuste */
+  min-width: 0;
 }
 
 .info-label {
@@ -147,7 +148,7 @@
   font-size: 1rem;
   font-weight: 600;
   color: #ffffff;
-  word-break: break-word; /* Evitar overflow de texto largo */
+  word-break: break-word;
 }
 
 /* Social Links */
@@ -156,7 +157,7 @@
   padding-top: 30px;
   border-top: 1px solid rgba(255, 255, 255, 0.2);
   position: relative;
-  z-index: 2; /* Asegurar que esté sobre las decoraciones */
+  z-index: 2;
 }
 
 .social-links h4 {
@@ -200,7 +201,7 @@
   width: 200px;
   height: 200px;
   pointer-events: none;
-  z-index: 0; /* Detrás del contenido */
+  z-index: 0;
 }
 
 .decoration-circle {
@@ -238,7 +239,7 @@
   padding: 40px;
   box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
   border: 1px solid rgba(0, 0, 0, 0.05);
-  height: fit-content; /* Ajustar altura al contenido */
+  height: fit-content;
   position: relative;
   z-index: 1;
 }
@@ -410,13 +411,39 @@
   }
 }
 
+/* ========================================
+   TABLET Y MÓVIL - FIX CRÍTICO
+   ======================================== */
+
 @media (max-width: 768px) {
   .contact-section-container {
     padding: 80px 5% 60px 5%;
   }
 
+  /* FIX: Asegurar que el grid sea columna simple */
   .contact-grid {
-    gap: 30px; /* Reducir gap entre paneles */
+    grid-template-columns: 1fr;
+    gap: 30px;
+    display: flex;
+    flex-direction: column;
+  }
+
+  /* FIX: Resetear cualquier posicionamiento problemático */
+  .contact-info-panel,
+  .contact-form-panel {
+    position: relative !important;
+    width: 100%;
+    margin: 0 !important;
+  }
+
+  .contact-info-panel {
+    padding: 30px 20px;
+    order: 1;
+  }
+  
+  .contact-form-panel {
+    padding: 30px 20px;
+    order: 2;
   }
 
   .form-row {
@@ -431,21 +458,24 @@
   .social-icons {
     justify-content: flex-start;
   }
-
-  .contact-form-panel {
-    padding: 30px 20px;
-  }
   
-  .contact-info-panel {
-    padding: 30px 20px;
-    margin-bottom: 0; /* Asegurar sin margen extra */
-  }
-  
-  /* Ocultar decoraciones en móviles para evitar problemas */
+  /* Ocultar decoraciones en móviles */
   .info-decoration {
     display: none;
   }
+  
+  /* Asegurar z-index correcto */
+  .contact-info-list,
+  .social-links,
+  .info-header {
+    position: relative;
+    z-index: 10;
+  }
 }
+
+/* ========================================
+   MÓVIL PEQUEÑO - FIX ADICIONAL
+   ======================================== */
 
 @media (max-width: 480px) {
   .contact-section-container {
@@ -462,13 +492,26 @@
     margin-bottom: 40px;
   }
 
+  /* FIX CRÍTICO: Forzar layout vertical sin superposición */
   .contact-grid {
-    gap: 25px; /* Reducir aún más el gap */
+    display: block !important;
+    width: 100%;
   }
 
   .contact-info-panel {
+    display: block;
+    width: 100%;
     padding: 25px 20px;
-    margin-bottom: 0;
+    margin-bottom: 25px !important;
+    position: relative;
+  }
+
+  .contact-form-panel {
+    display: block;
+    width: 100%;
+    padding: 25px 20px;
+    margin-top: 0 !important;
+    position: relative;
   }
 
   .info-header h3 {
@@ -486,16 +529,6 @@
     margin-bottom: 30px;
   }
 
-  .submit-button {
-    font-size: 1rem;
-    padding: 14px 24px;
-  }
-  
-  .contact-form-panel {
-    padding: 25px 20px;
-    margin-top: 0;
-  }
-  
   .info-item {
     padding: 12px;
     gap: 12px;
@@ -534,13 +567,7 @@
     height: 45px;
     font-size: 1.3rem;
   }
-  
-  /* Asegurar que no hay decoraciones */
-  .info-decoration {
-    display: none;
-  }
-  
-  /* Asegurar espaciado correcto del formulario */
+
   .contact-form {
     gap: 20px;
   }
@@ -548,10 +575,15 @@
   .form-group {
     gap: 6px;
   }
+
+  .submit-button {
+    font-size: 1rem;
+    padding: 14px 24px;
+  }
 }
 
 /* ========================================
-   MOBILE EXTRA SMALL (360px - 400px)
+   MÓVIL EXTRA PEQUEÑO
    ======================================== */
 
 @media (max-width: 400px) {
@@ -569,16 +601,15 @@
     margin-bottom: 35px;
   }
 
-  .contact-grid {
-    gap: 20px;
-  }
-
+  /* FIX: Asegurar separación clara */
   .contact-info-panel {
     padding: 20px 15px;
+    margin-bottom: 20px !important;
   }
 
   .contact-form-panel {
     padding: 20px 15px;
+    margin-top: 0 !important;
   }
 
   .info-header h3 {
@@ -656,5 +687,29 @@
   .submit-button {
     font-size: 0.95rem;
     padding: 13px 20px;
+  }
+}
+
+/* ========================================
+   FIX GLOBAL PARA SUPERPOSICIÓN
+   ======================================== */
+
+@media (max-width: 768px) {
+  /* Eliminar cualquier float o posicionamiento absoluto */
+  .contact-section-container * {
+    float: none !important;
+  }
+  
+  /* Asegurar que los paneles no se superpongan */
+  .contact-info-panel::after {
+    content: "";
+    display: block;
+    clear: both;
+  }
+  
+  .contact-form-panel::before {
+    content: "";
+    display: block;
+    clear: both;
   }
 }
