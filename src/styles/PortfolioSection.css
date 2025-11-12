@@ -643,6 +643,7 @@
 
   .portfolio-cta h3 {
     font-size: 1.5rem;
+    color: var(--color-primary-ui, #5c00b8);
   }
 
   .portfolio-cta p {
