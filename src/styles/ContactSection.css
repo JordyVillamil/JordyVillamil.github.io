@@ -465,7 +465,7 @@
     margin: 0;
     padding-top: 25px;
     order: 3; /* Asegurar que aparezca después */
-    border-top: 1px solid rgba(255, 255, 255, 0.2);
+    border-top: none;
   }
   
   .social-links h4 {
