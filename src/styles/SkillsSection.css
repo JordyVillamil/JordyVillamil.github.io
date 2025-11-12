@@ -7,6 +7,15 @@
   background: linear-gradient(135deg, #f5f7fa 0%, #ffffff 100%);
   position: relative;
   overflow: hidden;
+  margin: 0 !important; /* Eliminar cualquier margen */
+  z-index: 2;
+}
+.skills-section-container .section-title {
+  font-size: 2.5rem;
+  font-weight: 700;
+  text-align: center;
+  margin-bottom: 20px;
+  color: var(--color-primary-ui, #5c00b8);
 }
 
 .section-content {
@@ -18,9 +27,9 @@
 .section-subtitle {
   text-align: center;
   font-size: 1.1rem;
-  color: #666;
+  color: #5c00b8;
   max-width: 600px;
-  margin: -30px auto 50px;
+  margin: 0 auto 50px auto; /* Cambiado de -30px a 0 */
   line-height: 1.6;
 }
 
