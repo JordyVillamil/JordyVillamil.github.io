@@ -79,20 +79,6 @@ const HomeSection: React.FC<SectionProps> = ({ id }) => {
         >
           VILLAMIL LETRADO
         </motion.h2>
-
-        <motion.div
-          className="cta-buttons"
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 1.1 }}
-        >
-          <a href="#portfolio" className="btn-primary">
-            View My Work
-          </a>
-          <a href="#contactame" className="btn-secondary">
-            Get In Touch
-          </a>
-        </motion.div>
       </motion.div>
 
       {/* Scroll Indicator */}
