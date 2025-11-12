@@ -7,6 +7,8 @@
   background: linear-gradient(135deg, #fafbfc 0%, #ffffff 100%);
   position: relative;
   overflow: hidden;
+  margin: 0 !important; /* Eliminar cualquier margen */
+  z-index: 2;
 }
 
 .section-content {
@@ -15,13 +17,12 @@
 }
 
 /* Section Header */
-.section-title {
-  font-size: 3rem;
-  font-weight: 800;
+.portfolio-section-container .section-title {
+  font-size: 2.5rem;
+  font-weight: 700;
   text-align: center;
-  color: #1a1a1a;
   margin-bottom: 20px;
-  letter-spacing: -1px;
+  color: var(--color-primary-ui, #5c00b8);
 }
 
 .section-subtitle {

@@ -3,8 +3,35 @@
    ======================================== */
 
 .about-section-container {
-  padding: 80px 10%;
+  padding: 100px 10% 80px 10%; /* Aumentado padding superior de 80px a 100px */
   background: linear-gradient(135deg, #ffffff 0%, #f5f7fa 100%);
+  margin: 0 !important; /* Eliminar cualquier margen */
+  position: relative;
+  z-index: 2;
+}
+
+/* Section Title */
+.about-section-container .section-title {
+  font-size: 2.5rem;
+  font-weight: 700;
+  text-align: center;
+  margin-bottom: 60px;
+  color: var(--color-primary-ui, #5c00b8);
+  position: relative;
+  display: inline-block;
+  width: 100%;
+}
+
+.about-section-container .section-title::after {
+  content: '';
+  position: absolute;
+  bottom: -15px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 80px;
+  height: 4px;
+  background: linear-gradient(90deg, var(--color-primary-ui, #5c00b8), var(--color-primary-light, #7a33c9));
+  border-radius: 2px;
 }
 
 /* ========================================
@@ -15,10 +42,11 @@
   display: flex;
   align-items: center;
   gap: 60px;
-  margin-bottom: 100px;
+  margin-bottom: 80px; /* Reducido de 100px */
   max-width: 1200px;
   margin-left: auto;
   margin-right: auto;
+  margin-top: 0; /* Asegurar que no haya margen superior */
 }
 
 /* Image Section */
@@ -302,7 +330,12 @@
 
 @media (max-width: 768px) {
   .about-section-container {
-    padding: 60px 5%;
+    padding: 80px 5% 60px 5%;
+  }
+  
+  .about-section-container .section-title {
+    font-size: 2rem;
+    margin-bottom: 50px;
   }
 
   .who-i-am-block {
@@ -351,7 +384,12 @@
 
 @media (max-width: 480px) {
   .about-section-container {
-    padding: 40px 5%;
+    padding: 60px 5% 50px 5%;
+  }
+  
+  .about-section-container .section-title {
+    font-size: 1.75rem;
+    margin-bottom: 40px;
   }
 
   .bio-content h3 {

@@ -2,7 +2,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { FaCode, FaShieldAlt, FaDocker, FaDownload, FaCheckCircle } from 'react-icons/fa';
-import { SiPython, SiJavascript, SiReact, SiDjango, SiDocker } from 'react-icons/si';
+import { SiPython, SiJavascript, SiReact, SiDjango, SiDocker, SiRender, SiVercel, SiWireshark, SiKalilinux, SiSnort } from 'react-icons/si';
 import '../styles/AboutSection.css';
 import aboutmelogo from '../assets/logos/aboutme.png';
 
@@ -24,14 +24,14 @@ const AboutSection: React.FC<SectionProps> = ({ id }) => {
       title: 'Cybersecurity',
       description: 'I have a comprehensive approach to cybersecurity, combining offensive and defensive tactics. Through Ethical Hacking and Penetration Testing, I proactively identify and evaluate weaknesses in systems and networks. Defensively, I design secure architectures and define security controls and policies aligned with international standards like ISO 27001 to ensure information protection. I complement this strategy with the use of advanced tools like IDS/IPS for intrusion detection and SIEM platforms for real-time incident monitoring and response.',
       color: '#e74c3c',
-      techs: []
+      techs: [SiWireshark, SiKalilinux, SiSnort]
     },
     {
       icon: FaDocker,
       title: 'DevOps',
       description: 'I facilitate the delivery of high-quality software through automation and collaboration. I use Git/Github for efficient version control and design CI/CD pipelines to automate deployments. Additionally, I apply containerization techniques with Docker to ensure consistency between development and production environments, all within a framework based on agile methodologies to optimize speed and reliability.',
       color: '#2ecc71',
-      techs: [SiDocker]
+      techs: [SiDocker, SiRender, SiVercel]
     }
   ];
 

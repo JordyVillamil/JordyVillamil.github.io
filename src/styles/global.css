@@ -8,33 +8,14 @@
 @tailwind utilities;
 
 /* ========================================
-   VARIABLES GLOBALES
+   GLOBAL STYLES - Portfolio Jordy Villamil
+   CORRECCIÓN DE ESPACIADO ENTRE SECCIONES
    ======================================== */
-:root {
-  /* Colores de fondo */
-  --color-dark-bg: #090A0F;
-  --color-light-bg: #ffffff;
-  
-  /* Color primario (púrpura) */
-  --color-primary-ui: #5c00b8;
-  --color-primary-dark: #3d007a;
-  --color-primary-light: #7a33c9;
-  
-  /* Colores de texto */
-  --color-text-dark: #333333;
-  --color-text-light: #ffffff;
-  
-  /* Fuentes */
-  --font-code: 'Consolas', 'Courier New', monospace;
-  --font-main: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
-  
-  /* Espaciado */
-  --navbar-height: 80px;
-}
 
 /* ========================================
    RESET Y BASE
    ======================================== */
+
 * {
   margin: 0;
   padding: 0;
@@ -46,82 +27,455 @@ html {
 }
 
 body {
-  font-family: var(--font-main);
-  background-color: var(--color-light-bg);
-  color: var(--color-text-dark);
+  margin: 0;
+  padding: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
 }
 
-/* ========================================
-   SECCIONES BASE
-   ======================================== */
-section {
-  scroll-margin-top: var(--navbar-height);
-}
-
-.section-base {
-  padding: 80px 10%;
+#root {
   min-height: 100vh;
-  background-color: var(--color-light-bg);
-  color: var(--color-text-dark);
+  display: flex;
+  flex-direction: column;
+  margin: 0;
+  padding: 0;
+}
+
+/* Contenedor principal del portfolio */
+.portfolio-spa-container {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
 }
 
 /* ========================================
-   TIPOGRAFÍA
+   SECCIONES - ESPACIADO CORRECTO
    ======================================== */
-h1, h2, h3 {
-  color: var(--color-text-dark);
-  text-align: center;
-  margin-bottom: 30px;
+
+/* Todas las secciones principales */
+section {
+  position: relative;
+  width: 100%;
+  margin: 0 !important; /* Forzar eliminación de márgenes */
+  padding-top: 0 !important; /* Eliminar padding superior extra */
+  display: block;
 }
+
+/* Home Section - Full height viewport */
+#home,
+#inicio,
+section[id="home"],
+section[id="inicio"],
+.home-section-container {
+  height: 100vh !important;
+  max-height: 100vh !important;
+  min-height: 100vh !important;
+  margin: 0 !important;
+  padding: 0 10%;
+}
+
+/* About Section - Sin espaciado extra */
+#aboutme,
+#acerca-de-mi,
+section[id="aboutme"],
+section[id="acerca-de-mi"],
+.about-section-container {
+  min-height: auto;
+  padding: 100px 10% 80px 10%; /* Padding superior aumentado */
+  margin: 0 !important;
+}
+
+/* Skills Section - Sin espaciado extra */
+#habilidades,
+section[id="habilidades"],
+.skills-section-container {
+  min-height: auto;
+  padding: 80px 10%;
+  margin: 0 !important;
+}
+
+/* Portfolio Section - Sin espaciado extra */
+#portfolio,
+#portafolio,
+section[id="portfolio"],
+section[id="portafolio"],
+.portfolio-section-container {
+  min-height: auto;
+  padding: 100px 8%;
+  margin: 0 !important;
+}
+
+/* Contact Section - Sin espaciado extra */
+#contactame,
+section[id="contactame"],
+.contact-section-container {
+  min-height: auto;
+  padding: 100px 10% 80px 10%; /* Padding superior aumentado */
+  margin: 0 !important;
+}
+
+/* ========================================
+   ELIMINACIÓN DE ESPACIOS NO DESEADOS
+   ======================================== */
+
+/* Eliminar cualquier margen entre secciones */
+section + section {
+  margin-top: 0;
+}
+
+/* Asegurar que no haya espacios extra */
+.home-section-container + section,
+section:first-of-type {
+  margin-top: 0;
+}
+
+/* ========================================
+   VARIABLES CSS
+   ======================================== */
+
+:root {
+  /* Colores primarios */
+  --color-primary-ui: #5c00b8;
+  --color-primary-dark: #3d007a;
+  --color-light-bg: #ffffff;
+  --color-text-dark: #1a1a1a;
+  
+  /* Espaciado consistente */
+  --section-padding-vertical: 80px;
+  --section-padding-horizontal: 10%;
+  
+  /* Fuentes */
+  --consolas-code: 'Consolas', 'Courier New', monospace;
+  --roboto-condensed: 'Roboto Condensed', sans-serif;
+}
+
+/* ========================================
+   TÍTULOS DE SECCIÓN
+   ======================================== */
 
 .section-title {
-  font-size: 2.5em;
+  font-size: 2.5rem;
   font-weight: 700;
   text-align: center;
-  color: var(--color-primary-ui);
-  margin-bottom: 60px;
-  text-transform: uppercase;
+  margin-bottom: 20px;
+  color: var(--color-text-dark);
 }
 
-.name-title {
-  font-size: 3rem;
-  font-weight: bold;
+.section-subtitle {
+  text-align: center;
+  font-size: 1.1rem;
+  color: #666;
+  max-width: 600px;
+  margin: 0 auto 50px;
+  line-height: 1.6;
 }
 
 /* ========================================
-   RESPONSIVE
+   RESPONSIVE - AJUSTE DE PADDING
    ======================================== */
+
+@media (max-width: 1200px) {
+  #home,
+  #inicio,
+  .home-section-container {
+    padding: 0 8%;
+  }
+  
+  #aboutme,
+  #acerca-de-mi,
+  .about-section-container,
+  #habilidades,
+  .skills-section-container,
+  #contactame,
+  .contact-section-container {
+    padding: 90px 8% 70px 8%;
+  }
+  
+  #portfolio,
+  #portafolio,
+  .portfolio-section-container {
+    padding: 90px 6% 70px 6%;
+  }
+}
+
+@media (max-width: 992px) {
+  #home,
+  #inicio,
+  .home-section-container {
+    padding: 0 6%;
+  }
+  
+  #aboutme,
+  #acerca-de-mi,
+  .about-section-container,
+  #habilidades,
+  .skills-section-container,
+  #contactame,
+  .contact-section-container {
+    padding: 80px 6% 60px 6%;
+  }
+  
+  #portfolio,
+  #portafolio,
+  .portfolio-section-container {
+    padding: 80px 6% 60px 6%;
+  }
+}
+
 @media (max-width: 768px) {
-  .section-base {
-    padding: 60px 5%;
+  #home,
+  #inicio,
+  .home-section-container {
+    padding: 0 5%;
+    min-height: 100vh;
+  }
+  
+  #aboutme,
+  #acerca-de-mi,
+  .about-section-container,
+  #habilidades,
+  .skills-section-container,
+  #contactame,
+  .contact-section-container {
+    padding: 80px 5% 60px 5%;
+  }
+  
+  #portfolio,
+  #portafolio,
+  .portfolio-section-container {
+    padding: 80px 5% 60px 5%;
   }
   
   .section-title {
     font-size: 2rem;
+  }
+  
+  .section-subtitle {
+    font-size: 1rem;
     margin-bottom: 40px;
   }
 }
 
 @media (max-width: 480px) {
-  .name-title {
-    font-size: 2.5rem;
+  #home,
+  #inicio,
+  .home-section-container {
+    padding: 0 5%;
   }
-
+  
+  #aboutme,
+  #acerca-de-mi,
+  .about-section-container,
+  #habilidades,
+  .skills-section-container,
+  #contactame,
+  .contact-section-container {
+    padding: 60px 5% 50px 5%;
+  }
+  
+  #portfolio,
+  #portafolio,
+  .portfolio-section-container {
+    padding: 60px 5% 50px 5%;
+  }
+  
   .section-title {
     font-size: 1.75rem;
   }
   
-  .section-base {
-    padding: 40px 5%;
+  .section-subtitle {
+    font-size: 0.95rem;
+    margin-bottom: 35px;
   }
 }
 
 /* ========================================
-   UTILIDADES
+   ELIMINACIÓN DE MÁRGENES PROBLEMÁTICOS
    ======================================== */
-.no-scroll {
-  overflow: hidden;
-  height: 100vh;
+
+/* Asegurar que los contenedores no tengan margen extra */
+.about-section-container,
+.skills-section-container,
+.portfolio-section-container,
+.contact-section-container {
+  margin-top: 0 !important;
+  margin-bottom: 0 !important;
 }
+
+/* Eliminar margin-top de los primeros elementos dentro de secciones */
+section > div:first-child,
+section > h1:first-child,
+section > h2:first-child {
+  margin-top: 0;
+}
+
+/* Eliminar margin-bottom de los últimos elementos dentro de secciones */
+section > div:last-child,
+section > h1:last-child,
+section > h2:last-child,
+section > p:last-child {
+  margin-bottom: 0;
+}
+
+/* ========================================
+   UTILIDADES GENERALES
+   ======================================== */
+
+/* Contenedor centrado estándar */
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+/* Clearfix para floats (si se usan) */
+.clearfix::after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+/* ========================================
+   TRANSICIONES SUAVES
+   ======================================== */
+
+a,
+button,
+.btn {
+  transition: all 0.3s ease;
+}
+
+/* ========================================
+   SCROLLBAR STYLING (OPCIONAL)
+   ======================================== */
+
+/* Para navegadores webkit (Chrome, Safari, Edge) */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--color-primary-ui);
+  border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-primary-dark);
+}
+
+/* Para Firefox */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: var(--color-primary-ui) #f1f1f1;
+}
+
+/* ========================================
+   ACCESIBILIDAD
+   ======================================== */
+
+/* Focus visible para navegación por teclado */
+*:focus-visible {
+  outline: 2px solid var(--color-primary-ui);
+  outline-offset: 2px;
+}
+
+/* Remover outline por defecto solo si hay focus-visible support */
+*:focus:not(:focus-visible) {
+  outline: none;
+}
+
+/* ========================================
+   PRINT STYLES (OPCIONAL)
+   ======================================== */
+
+@media print {
+  section {
+    page-break-inside: avoid;
+  }
+  
+  .no-print {
+    display: none !important;
+  }
+}
+
+/* ========================================
+   FIX ESPECÍFICO PARA VIDEO HERO
+   ======================================== */
+
+/* Asegurar que Home Section no tenga overflow que afecte otras secciones */
+.home-section-container {
+  overflow: hidden;
+  position: relative;
+  z-index: 1;
+  /* Asegurar altura exacta del viewport */
+  height: 100vh;
+  max-height: 100vh;
+}
+
+/* Asegurar que las secciones siguientes estén sobre el home */
+.about-section-container,
+.skills-section-container,
+.portfolio-section-container,
+.contact-section-container {
+  position: relative;
+  z-index: 2;
+  /* Fondos sólidos específicos para cada sección */
+}
+
+/* Fondos específicos para evitar transparencias */
+.about-section-container {
+  background: linear-gradient(135deg, #ffffff 0%, #f5f7fa 100%) !important;
+}
+
+.skills-section-container {
+  background: linear-gradient(135deg, #f5f7fa 0%, #ffffff 100%) !important;
+}
+
+.portfolio-section-container {
+  background: linear-gradient(135deg, #fafbfc 0%, #ffffff 100%) !important;
+}
+
+.contact-section-container {
+  background: linear-gradient(135deg, #f5f7fa 0%, #ffffff 100%) !important;
+}
+
+/* ========================================
+   DEBUGGING (COMENTAR EN PRODUCCIÓN)
+   ======================================== */
+
+/* Descomenta esto temporalmente para ver los bordes de las secciones
+section {
+  border: 2px solid red;
+}
+
+.home-section-container {
+  border: 2px solid blue;
+}
+
+.about-section-container {
+  border: 2px solid green;
+}
+
+.skills-section-container {
+  border: 2px solid orange;
+}
+
+.portfolio-section-container {
+  border: 2px solid purple;
+}
+
+.contact-section-container {
+  border: 2px solid pink;
+}
+*/
