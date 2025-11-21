@@ -80,6 +80,105 @@ const LazyImage: React.FC<{
 const PortfolioSection: React.FC<SectionProps> = ({ id }) => {
   const [filter, setFilter] = useState<'all' | 'featured'>('all');
 
+  // Función para abrir video en nueva ventana
+  const openGifInNewWindow = (gifSrc: string, title: string) => {
+    const width = 1000;
+    const height = 700;
+    const left = (window.screen.width - width) / 2;
+    const top = (window.screen.height - height) / 2;
+    
+    const newWindow = window.open(
+      '',
+      `${title} - Demo`,
+      `width=${width},height=${height},left=${left},top=${top},resizable=yes,scrollbars=yes`
+    );
+    
+    if (newWindow) {
+      newWindow.document.write(`
+        <!DOCTYPE html>
+        <html lang="en">
+        <head>
+          <meta charset="UTF-8">
+          <meta name="viewport" content="width=device-width, initial-scale=1.0">
+          <title>${title} - Demo</title>
+          <style>
+            * {
+              margin: 0;
+              padding: 0;
+              box-sizing: border-box;
+            }
+            body {
+              background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
+              display: flex;
+              flex-direction: column;
+              align-items: center;
+              justify-content: center;
+              min-height: 100vh;
+              font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
+              padding: 20px;
+            }
+            .gif-container {
+              width: 100%;
+              max-width: 900px;
+              background: #000;
+              border-radius: 12px;
+              box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+              overflow: hidden;
+            }
+            .gif-header {
+              background: linear-gradient(135deg, #5c00b8, #a753df);
+              padding: 20px;
+              color: white;
+            }
+            .gif-header h1 {
+              font-size: 1.5rem;
+              font-weight: 700;
+              margin: 0;
+            }
+            img {
+              width: 100%;
+              height: auto;
+              display: block;
+            }
+
+            .close-btn {
+              position: fixed;
+              top: 20px;
+              right: 20px;
+              background: rgba(255, 255, 255, 0.1);
+              backdrop-filter: blur(10px);
+              border: 2px solid rgba(255, 255, 255, 0.2);
+              color: white;
+              padding: 12px 24px;
+              border-radius: 50px;
+              cursor: pointer;
+              font-size: 1rem;
+              font-weight: 600;
+              transition: all 0.3s ease;
+              z-index: 1000;
+            }
+            .close-btn:hover {
+              background: rgba(255, 255, 255, 0.2);
+              border-color: rgba(255, 255, 255, 0.4);
+              transform: scale(1.05);
+            }
+          </style>
+        </head>
+        <body>
+          <button class="close-btn" onclick="window.close()">✕ Close</button>
+          <div class="gif-container">
+            <div class="gif-header">
+              <h1>${title} - Demo</h1>
+            </div>
+            <img src="${gifSrc}" alt="${title} Demo">
+          </div>
+        </body>
+        </html>
+      `);
+      newWindow.document.close();
+    }
+  };
+
   const projects: Project[] = [
     {
       title: 'EduGestion360',
@@ -147,7 +246,7 @@ const PortfolioSection: React.FC<SectionProps> = ({ id }) => {
       scale: 1,
       transition: { 
         duration: 0.5,
-        ease: [0.4, 0, 0.2, 1]
+        ease: "easeInOut" as const
       }
     },
     exit: {
@@ -244,17 +343,15 @@ const PortfolioSection: React.FC<SectionProps> = ({ id }) => {
                   />
                   <div className="image-overlay">
                     <div className="overlay-content">
-                      <motion.a
-                        href={project.previewLink}
-                        target="_blank"
-                        rel="noopener noreferrer"
+                      <motion.button
+                        onClick={() => openGifInNewWindow(project.image, project.title)}
                         className="overlay-btn"
                         aria-label={`View ${project.title} demo`}
                         whileHover={{ scale: 1.15, rotate: 5 }}
                         whileTap={{ scale: 0.9 }}
                       >
                         <FaExternalLinkAlt />
-                      </motion.a>
+                      </motion.button>
                       <motion.a
                         href={project.githubLink}
                         target="_blank"
@@ -298,17 +395,15 @@ const PortfolioSection: React.FC<SectionProps> = ({ id }) => {
 
                   {/* Action Buttons */}
                   <div className="project-links">
-                    <motion.a
-                      href={project.previewLink}
-                      target="_blank"
-                      rel="noopener noreferrer"
+                    <motion.button
+                      onClick={() => openGifInNewWindow(project.image, project.title)}
                       className="btn-preview"
                       whileHover={{ scale: 1.03, y: -3 }}
                       whileTap={{ scale: 0.97 }}
                     >
                       <FaExternalLinkAlt />
                       <span>View Demo</span>
-                    </motion.a>
+                    </motion.button>
                     <motion.a
                       href={project.githubLink}
                       target="_blank"
