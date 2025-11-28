@@ -1,7 +1,7 @@
 // src/sections/SkillsSection.tsx
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { SiMysql } from 'react-icons/si';
+import { FaChevronLeft, FaChevronRight } from 'react-icons/fa';
 import '../styles/SkillsSection.css';
 
 // Logos
@@ -16,6 +16,7 @@ import pythonlogo from '../assets/logos/python1.png';
 import djangologo from '../assets/logos/django3.png';
 import devopslogo from '../assets/logos/devops.png';
 import cybersecuritylogo from '../assets/logos/vpn.png';
+import SQLlogo from '../assets/logos/SQLlogo.jpg';
 
 interface SectionProps {
   id: string;
@@ -23,8 +24,7 @@ interface SectionProps {
 
 interface Skill {
   name: string;
-  icon: string | null;
-  iconComponent?: React.ReactNode;
+  icon: string;
   category: string;
 }
 
@@ -44,7 +44,7 @@ const SkillsSection: React.FC<SectionProps> = ({ id }) => {
     // Backend
     { name: 'Python', icon: pythonlogo, category: 'Backend' },
     { name: 'Django', icon: djangologo, category: 'Backend' },
-    { name: 'SQL', icon: null, iconComponent: <SiMysql size={50} color="#00758F" />, category: 'Backend' },
+    { name: 'SQL', icon: SQLlogo, category: 'Backend' },
     
     // DevOps
     { name: 'Docker', icon: dockerlogo, category: 'DevOps' },
@@ -60,16 +60,6 @@ const SkillsSection: React.FC<SectionProps> = ({ id }) => {
   const filteredSkills = activeCategory === 'All' 
     ? skills 
     : skills.filter(skill => skill.category === activeCategory);
-
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.1
-      }
-    }
-  };
 
   const itemVariants = {
     hidden: { opacity: 0, scale: 0.8 },
@@ -88,6 +78,22 @@ const SkillsSection: React.FC<SectionProps> = ({ id }) => {
       'Security': '#f39c12'
     };
     return colors[category] || '#5c00b8';
+  };
+
+  // Función para scroll del carrusel
+  const scrollCarousel = (direction: 'left' | 'right') => {
+    if (carouselRef.current) {
+      const scrollAmount = 200; // Píxeles a desplazar
+      const currentScroll = carouselRef.current.scrollLeft;
+      const newScroll = direction === 'left' 
+        ? currentScroll - scrollAmount 
+        : currentScroll + scrollAmount;
+      
+      carouselRef.current.scrollTo({
+        left: newScroll,
+        behavior: 'smooth'
+      });
+    }
   };
 
   return (
@@ -145,68 +151,85 @@ const SkillsSection: React.FC<SectionProps> = ({ id }) => {
 
         {/* Skills Carousel */}
         <div 
-          className="skills-carousel-container"
+          className="skills-carousel-wrapper"
           onMouseEnter={() => setIsPaused(true)}
           onMouseLeave={() => setIsPaused(false)}
         >
-          <AnimatePresence mode="wait">
-            <motion.div
-              key={activeCategory}
-              className={`skills-carousel ${isPaused ? 'paused' : ''}`}
-              ref={carouselRef}
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              transition={{ duration: 0.3 }}
-            >
-              {/* Duplicamos los items para el efecto infinito */}
-              {[...filteredSkills, ...filteredSkills].map((skill, index) => (
-                <motion.div
-                  key={`${skill.name}-${index}`}
-                  className="skill-item"
-                  variants={itemVariants}
-                  whileHover={{ y: -10, scale: 1.05 }}
-                  transition={{ type: "spring", stiffness: 300 }}
-                >
-                  <div
-                    className="skill-badge"
-                    style={{ borderColor: getCategoryColor(skill.category) }}
+          {/* Botón Izquierdo */}
+          <motion.button
+            className="carousel-nav-btn carousel-nav-left"
+            onClick={() => scrollCarousel('left')}
+            whileHover={{ scale: 1.1 }}
+            whileTap={{ scale: 0.9 }}
+            aria-label="Scroll left"
+          >
+            <FaChevronLeft />
+          </motion.button>
+
+          <div className="skills-carousel-container" ref={carouselRef}>
+            <AnimatePresence mode="wait">
+              <motion.div
+                key={activeCategory}
+                className={`skills-carousel ${isPaused ? 'paused' : ''}`}
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                transition={{ duration: 0.3 }}
+              >
+                {/* Duplicamos los items para el efecto infinito */}
+                {[...filteredSkills, ...filteredSkills].map((skill, index) => (
+                  <motion.div
+                    key={`${skill.name}-${index}`}
+                    className="skill-item"
+                    variants={itemVariants}
+                    whileHover={{ y: -10, scale: 1.05 }}
+                    transition={{ type: "spring", stiffness: 300 }}
                   >
-                    <div className="skill-icon">
-                      {skill.icon ? (
+                    <div
+                      className="skill-badge"
+                      style={{ borderColor: getCategoryColor(skill.category) }}
+                    >
+                      <div className="skill-icon">
                         <img
                           src={skill.icon}
                           alt={`${skill.name} logo`}
                           className="skill-logo"
                         />
-                      ) : (
-                        <div className="skill-icon-component">
-                          {skill.iconComponent}
-                        </div>
-                      )}
-                    </div>
-                    
-                    <p className="skill-name">{skill.name}</p>
+                      </div>
+                      
+                      <p className="skill-name">{skill.name}</p>
 
+                      <div
+                        className="skill-category-tag"
+                        style={{ backgroundColor: `${getCategoryColor(skill.category)}20` }}
+                      >
+                        <span style={{ color: getCategoryColor(skill.category) }}>
+                          {skill.category}
+                        </span>
+                      </div>
+                    </div>
+
+                    {/* Hover Glow Effect */}
                     <div
-                      className="skill-category-tag"
-                      style={{ backgroundColor: `${getCategoryColor(skill.category)}20` }}
-                    >
-                      <span style={{ color: getCategoryColor(skill.category) }}>
-                        {skill.category}
-                      </span>
-                    </div>
-                  </div>
+                      className="skill-glow"
+                      style={{ background: `radial-gradient(circle, ${getCategoryColor(skill.category)}30, transparent)` }}
+                    />
+                  </motion.div>
+                ))}
+              </motion.div>
+            </AnimatePresence>
+          </div>
 
-                  {/* Hover Glow Effect */}
-                  <div
-                    className="skill-glow"
-                    style={{ background: `radial-gradient(circle, ${getCategoryColor(skill.category)}30, transparent)` }}
-                  />
-                </motion.div>
-              ))}
-            </motion.div>
-          </AnimatePresence>
+          {/* Botón Derecho */}
+          <motion.button
+            className="carousel-nav-btn carousel-nav-right"
+            onClick={() => scrollCarousel('right')}
+            whileHover={{ scale: 1.1 }}
+            whileTap={{ scale: 0.9 }}
+            aria-label="Scroll right"
+          >
+            <FaChevronRight />
+          </motion.button>
         </div>
 
         {/* Stats Section */}
