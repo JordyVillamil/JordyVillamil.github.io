@@ -174,7 +174,8 @@ portfolio-Jordy-Villamil/
 - Sistema de filtros: All Projects, Web Apps, Mobile Apps, APIs
 - Badges de "Featured" para proyectos destacados
 - Previews con GIFs animados
-- Overlay con botones de acción: "Live Demo" y "GitHub"
+- **Vista previa en ventana emergente**: Los GIFs se abren en una ventana popup estilizada
+- Overlay con botones de acción: "View Demo" y "GitHub"
 - Tags de tecnologías utilizadas
 - Año de desarrollo visible
 - Efectos hover con elevación 3D
@@ -375,6 +376,15 @@ Efecto de máquina de escribir en el Home:
 - Velocidad ajustable (50 WPM)
 - Múltiples textos: "Full-Stack Developer", "Ethical Hacker", "Tech Enthusiast"
 
+### GIF Preview Popup System
+Sistema de vista previa de proyectos:
+- **Ventana emergente personalizada**: Popup centrado de 1000x700px
+- **Diseño estilizado**: Header con gradiente y contenedor oscuro
+- **Visualización de GIFs**: Imágenes animadas a tamaño completo
+- **Botón de cierre**: Interfaz intuitiva para cerrar la ventana
+- **Responsive**: Ajuste automático al tamaño de pantalla
+- **Cross-browser**: Compatible con navegadores modernos
+
 ### Responsive Design System
 Sistema de breakpoints completo:
 - **1200px**: Ajustes para laptops pequeñas
@@ -487,6 +497,8 @@ Este proyecto es de uso personal. Todos los derechos reservados © 2025 Jordy Fa
 - ✅ Sistema de filtros en Skills y Portfolio
 - ✅ Animaciones Framer Motion en todas las secciones
 - ✅ Optimización de performance y carga
+- ✅ **Sistema de vista previa de GIFs en ventana emergente**
+- ✅ **Popup estilizado para demos de proyectos**
 
 ---
 
