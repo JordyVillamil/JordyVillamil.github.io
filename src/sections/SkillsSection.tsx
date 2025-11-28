@@ -1,6 +1,7 @@
 // src/sections/SkillsSection.tsx
-import React, { useState } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { SiMysql } from 'react-icons/si';
 import '../styles/SkillsSection.css';
 
 // Logos
@@ -22,33 +23,36 @@ interface SectionProps {
 
 interface Skill {
   name: string;
-  icon: string;
-  level: number; // 1-5 para mostrar nivel de dominio
+  icon: string | null;
+  iconComponent?: React.ReactNode;
   category: string;
 }
 
 const SkillsSection: React.FC<SectionProps> = ({ id }) => {
   const [activeCategory, setActiveCategory] = useState<string>('All');
+  const [isPaused, setIsPaused] = useState<boolean>(false);
+  const carouselRef = useRef<HTMLDivElement>(null);
 
   const skills: Skill[] = [
     // Frontend
-    { name: 'HTML', icon: htmllogo, level: 5, category: 'Frontend' },
-    { name: 'CSS', icon: csslogo, level: 5, category: 'Frontend' },
-    { name: 'JavaScript', icon: jslogo, level: 4, category: 'Frontend' },
-    { name: 'React', icon: reactlogo, level: 4, category: 'Frontend' },
-    { name: 'Angular', icon: angularlogo, level: 3, category: 'Frontend' },
+    { name: 'HTML', icon: htmllogo, category: 'Frontend' },
+    { name: 'CSS', icon: csslogo, category: 'Frontend' },
+    { name: 'JavaScript', icon: jslogo, category: 'Frontend' },
+    { name: 'React', icon: reactlogo, category: 'Frontend' },
+    { name: 'Angular', icon: angularlogo, category: 'Frontend' },
     
     // Backend
-    { name: 'Python', icon: pythonlogo, level: 5, category: 'Backend' },
-    { name: 'Django', icon: djangologo, level: 4, category: 'Backend' },
+    { name: 'Python', icon: pythonlogo, category: 'Backend' },
+    { name: 'Django', icon: djangologo, category: 'Backend' },
+    { name: 'SQL', icon: null, iconComponent: <SiMysql size={50} color="#00758F" />, category: 'Backend' },
     
     // DevOps
-    { name: 'Docker', icon: dockerlogo, level: 4, category: 'DevOps' },
-    { name: 'GitHub', icon: githublogo, level: 5, category: 'DevOps' },
-    { name: 'CI/CD', icon: devopslogo, level: 3, category: 'DevOps' },
+    { name: 'Docker', icon: dockerlogo, category: 'DevOps' },
+    { name: 'GitHub', icon: githublogo, category: 'DevOps' },
+    { name: 'CI/CD', icon: devopslogo, category: 'DevOps' },
     
     // Security
-    { name: 'Cybersecurity', icon: cybersecuritylogo, level: 4, category: 'Security' },
+    { name: 'Cybersecurity', icon: cybersecuritylogo, category: 'Security' },
   ];
 
   const categories = ['All', 'Frontend', 'Backend', 'DevOps', 'Security'];
@@ -84,19 +88,6 @@ const SkillsSection: React.FC<SectionProps> = ({ id }) => {
       'Security': '#f39c12'
     };
     return colors[category] || '#5c00b8';
-  };
-
-  const renderLevelDots = (level: number) => {
-    return (
-      <div className="skill-level">
-        {[...Array(5)].map((_, index) => (
-          <span
-            key={index}
-            className={`level-dot ${index < level ? 'filled' : ''}`}
-          />
-        ))}
-      </div>
-    );
   };
 
   return (
@@ -152,59 +143,71 @@ const SkillsSection: React.FC<SectionProps> = ({ id }) => {
           Showing <strong>{filteredSkills.length}</strong> skill{filteredSkills.length !== 1 ? 's' : ''}
         </motion.div>
 
-        {/* Skills Grid */}
-        <AnimatePresence mode="wait">
-          <motion.div
-            key={activeCategory}
-            className="skills-grid"
-            variants={containerVariants}
-            initial="hidden"
-            animate="visible"
-            exit={{ opacity: 0, scale: 0.9 }}
-          >
-            {filteredSkills.map((skill, index) => (
-              <motion.div
-                key={`${skill.name}-${activeCategory}`}
-                className="skill-item"
-                variants={itemVariants}
-                whileHover={{ y: -10, scale: 1.05 }}
-                transition={{ type: "spring", stiffness: 300 }}
-              >
-                <div
-                  className="skill-badge"
-                  style={{ borderColor: getCategoryColor(skill.category) }}
+        {/* Skills Carousel */}
+        <div 
+          className="skills-carousel-container"
+          onMouseEnter={() => setIsPaused(true)}
+          onMouseLeave={() => setIsPaused(false)}
+        >
+          <AnimatePresence mode="wait">
+            <motion.div
+              key={activeCategory}
+              className={`skills-carousel ${isPaused ? 'paused' : ''}`}
+              ref={carouselRef}
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.3 }}
+            >
+              {/* Duplicamos los items para el efecto infinito */}
+              {[...filteredSkills, ...filteredSkills].map((skill, index) => (
+                <motion.div
+                  key={`${skill.name}-${index}`}
+                  className="skill-item"
+                  variants={itemVariants}
+                  whileHover={{ y: -10, scale: 1.05 }}
+                  transition={{ type: "spring", stiffness: 300 }}
                 >
-                  <div className="skill-icon">
-                    <img
-                      src={skill.icon}
-                      alt={`${skill.name} logo`}
-                      className="skill-logo"
-                    />
-                  </div>
-                  
-                  <p className="skill-name">{skill.name}</p>
-                  
-                  {renderLevelDots(skill.level)}
-
                   <div
-                    className="skill-category-tag"
-                    style={{ backgroundColor: `${getCategoryColor(skill.category)}20` }}
+                    className="skill-badge"
+                    style={{ borderColor: getCategoryColor(skill.category) }}
                   >
-                    <span style={{ color: getCategoryColor(skill.category) }}>
-                      {skill.category}
-                    </span>
-                  </div>
-                </div>
+                    <div className="skill-icon">
+                      {skill.icon ? (
+                        <img
+                          src={skill.icon}
+                          alt={`${skill.name} logo`}
+                          className="skill-logo"
+                        />
+                      ) : (
+                        <div className="skill-icon-component">
+                          {skill.iconComponent}
+                        </div>
+                      )}
+                    </div>
+                    
+                    <p className="skill-name">{skill.name}</p>
 
-                {/* Hover Glow Effect */}
-                <div
-                  className="skill-glow"
-                  style={{ background: `radial-gradient(circle, ${getCategoryColor(skill.category)}30, transparent)` }}
-                />
-              </motion.div>
-            ))}
-          </motion.div>
-        </AnimatePresence>
+                    <div
+                      className="skill-category-tag"
+                      style={{ backgroundColor: `${getCategoryColor(skill.category)}20` }}
+                    >
+                      <span style={{ color: getCategoryColor(skill.category) }}>
+                        {skill.category}
+                      </span>
+                    </div>
+                  </div>
+
+                  {/* Hover Glow Effect */}
+                  <div
+                    className="skill-glow"
+                    style={{ background: `radial-gradient(circle, ${getCategoryColor(skill.category)}30, transparent)` }}
+                  />
+                </motion.div>
+              ))}
+            </motion.div>
+          </AnimatePresence>
+        </div>
 
         {/* Stats Section */}
         <motion.div
@@ -225,10 +228,8 @@ const SkillsSection: React.FC<SectionProps> = ({ id }) => {
           </div>
           <div className="stat-divider"></div>
           <div className="stat-item">
-            <div className="stat-number">
-              {Math.round((skills.reduce((acc, skill) => acc + skill.level, 0) / (skills.length * 5)) * 100)}%
-            </div>
-            <div className="stat-label">Avg. Proficiency</div>
+            <div className="stat-number">3+</div>
+            <div className="stat-label">Years Learning</div>
           </div>
         </motion.div>
       </div>
