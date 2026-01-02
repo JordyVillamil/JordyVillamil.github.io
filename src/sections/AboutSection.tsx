@@ -2,7 +2,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { FaCode, FaShieldAlt, FaDocker, FaDownload, FaCheckCircle } from 'react-icons/fa';
-import { SiPython, SiJavascript, SiReact, SiDjango, SiDocker, SiRender, SiVercel, SiWireshark, SiKalilinux, SiSnort } from 'react-icons/si';
+import { SiPython, SiJavascript, SiReact, SiDjango, SiDocker, SiRender, SiVercel, SiWireshark, SiKalilinux, SiSnort, SiLaravel } from 'react-icons/si';
 import '../styles/AboutSection.css';
 import aboutmelogo from '../assets/logos/aboutme.png';
 
@@ -17,7 +17,7 @@ const AboutSection: React.FC<SectionProps> = ({ id }) => {
       title: 'Fullstack Developer',
       description: 'As a Fullstack developer, I build secure and efficient web applications. I master backend logic with Python (Django) and PHP (Laravel) and SQL database management. On the frontend, I create interactive and user-friendly interfaces with JavaScript (React, Angular). My main focus is the implementation of secure coding practices from the beginning, applying OWASP principles to mitigate vulnerabilities and ensure software robustness.',
       color: '#3498db',
-      techs: [SiPython, SiJavascript, SiReact, SiDjango]
+      techs: [SiPython, SiJavascript, SiReact, SiDjango, SiLaravel]
     },
     {
       icon: FaShieldAlt,
@@ -102,7 +102,7 @@ const AboutSection: React.FC<SectionProps> = ({ id }) => {
             I am a <strong>software developer</strong> with a strong specialization in <strong>cybersecurity</strong>, backed by professional certifications from Google and the University of the Andes, and with ongoing training in DevOps from IBM.
           </p>
           <p className="bio-description">
-            I have experience in the software development life cycle (SDLC), vulnerability analysis, penetration testing, and CI/CD practices with Docker. I am looking to apply my skills in full-stack development (Python, JS) and security to build strong and reliable technological solutions.
+            I have experience in the software development life cycle (SDLC), vulnerability analysis, penetration testing, and CI/CD practices with Docker. I am looking to apply my skills in full-stack development (Python, JS, PHP) and security to build strong and reliable technological solutions.
           </p>
 
           {/* Highlights */}
