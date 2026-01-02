@@ -102,7 +102,7 @@ portfolio-Jordy-Villamil/
 │   │
 │   ├── components/                  # Componentes reutilizables
 │   │   ├── background/
-│   │   │   └── StarryBackground.tsx # Fondo animado con estrellas
+│   │   │   └── StarryBackground.tsx # (Legacy) Fondo animado - Reemplazado por Video Hero
 │   │   ├── layout/
 │   │   │   ├── Footer.tsx           # Pie de página
 │   │   │   └── Navbar.tsx           # Barra de navegación
@@ -161,13 +161,15 @@ portfolio-Jordy-Villamil/
 - Efectos hover interactivos en cada tarjeta
 
 ### 💻 Skills (Habilidades)
-- Sistema de filtros por categoría (All, Frontend, Backend, DevOps, Tools)
-- Grid responsive de habilidades con logos
-- Indicadores de nivel de experiencia (dots)
+- Sistema de filtros por categoría (All, Frontend, Backend, DevOps, Security)
+- **Carrusel animado** con desplazamiento automático infinito
+- **Botones de navegación lateral** para control manual del carrusel
+- Pausa automática al pasar el mouse sobre las tarjetas
 - Efectos hover con transformaciones y glow
 - Logos de tecnologías en escala de grises que cobran color al hover
-- Sección de estadísticas con contadores animados
+- Sección de estadísticas: Tecnologías, Categorías, Años de aprendizaje
 - Tags por categoría para cada habilidad
+- 12 tecnologías: HTML, CSS, JavaScript, React, Angular, Python, Django, SQL, Docker, GitHub, CI/CD, Cybersecurity
 
 ### 🎨 Portfolio (Proyectos)
 - Galería de proyectos con diseño tipo Pinterest
@@ -385,6 +387,15 @@ Sistema de vista previa de proyectos:
 - **Responsive**: Ajuste automático al tamaño de pantalla
 - **Cross-browser**: Compatible con navegadores modernos
 
+### Skills Carousel System
+Carrusel interactivo para la sección de habilidades:
+- **Animación infinita**: Desplazamiento automático continuo con CSS keyframes
+- **Botones de navegación**: Flechas izquierda/derecha para control manual
+- **Pausa inteligente**: Se detiene al hacer hover para mejor visualización
+- **Scroll suave**: Desplazamiento de 200px por clic con animación fluida
+- **Efecto de máscara**: Gradiente en los bordes para transición visual
+- **Duplicación de items**: Efecto de loop infinito sin cortes
+
 ### Responsive Design System
 Sistema de breakpoints completo:
 - **1200px**: Ajustes para laptops pequeñas
@@ -497,8 +508,12 @@ Este proyecto es de uso personal. Todos los derechos reservados © 2025 Jordy Fa
 - ✅ Sistema de filtros en Skills y Portfolio
 - ✅ Animaciones Framer Motion en todas las secciones
 - ✅ Optimización de performance y carga
-- ✅ **Sistema de vista previa de GIFs en ventana emergente**
-- ✅ **Popup estilizado para demos de proyectos**
+- ✅ Sistema de vista previa de GIFs en ventana emergente
+- ✅ Popup estilizado para demos de proyectos
+- ✅ **Carrusel animado en Skills con scroll infinito**
+- ✅ **Botones de navegación lateral para el carrusel**
+- ✅ **Eliminación de indicadores de porcentaje/nivel**
+- ✅ **Nueva skill: SQL agregado a Backend**
 
 ---
 

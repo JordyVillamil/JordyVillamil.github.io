@@ -15,7 +15,7 @@ const Navbar: React.FC = () => {
   }, []);
 
   useEffect(() => {
-    const sections = ['inicio', 'acerca-de-mi', 'portafolio', 'contactame'];
+    const sections = ['inicio', 'acerca-de-mi', 'habilidades', 'portafolio', 'contactame'];
     const handleScroll = () => {
       const scrollPosition = window.scrollY + 100;
       for (const section of sections) {
@@ -36,6 +36,7 @@ const Navbar: React.FC = () => {
   const navItems = [
     { href: '#inicio', label: 'Home', id: 'inicio' },
     { href: '#acerca-de-mi', label: 'About', id: 'acerca-de-mi' },
+    { href: '#habilidades', label: 'Skills', id: 'habilidades' },
     { href: '#portafolio', label: 'Portfolio', id: 'portafolio' },
     { href: '#contactame', label: 'Contact', id: 'contactame' },
   ];
