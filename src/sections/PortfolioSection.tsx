@@ -9,6 +9,7 @@ import EduGestion360gif from '../assets/previews/EduGestion360.gif';
 import TimePiecesgif from '../assets/previews/TimePieces.gif';
 import EWEADNgif from '../assets/previews/EWEADN.gif';
 import SynapseTradegif from '../assets/previews/SynapseTrade.gif';
+import XVbirthdaygif from '../assets/previews/XVBirthday.gif';
 
 interface SectionProps {
   id: string;
@@ -191,6 +192,17 @@ const PortfolioSection: React.FC<SectionProps> = ({ id }) => {
       image: EduGestion360gif,
       featured: true,
       year: '2024'
+    },
+    {
+      title: '15th Birthday Invitation',
+      subtitle: 'Interactive electronic invitation for a 15th birthday party with an "Alice in Wonderland" theme.',
+      description: 'Interactive electronic invitation for a 15th birthday party with an "Alice in Wonderland" theme. Includes an animated introduction screen, interactive envelope, card with multiple navigable sections, quill pen writing effect, WebGL fluid simulation, and background music.',
+      tags: ['HTML', 'CSS', 'Googlefonts', 'SplashCursor', 'AudioAPI', 'MutationObserver',],
+      githubLink: 'https://edguitarz872-maker.github.io/Invitacion-XV/',
+      previewLink: 'https://edguitarz872-maker.github.io/Invitacion-XV/',
+      image: XVbirthdaygif,
+      featured: true,
+      year: '2026'
     },
     {
       title: 'TimePieces',
