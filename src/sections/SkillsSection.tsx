@@ -17,7 +17,7 @@ import djangologo from '../assets/logos/django3.png';
 import devopslogo from '../assets/logos/devops.png';
 import cybersecuritylogo from '../assets/logos/vpn.png';
 import SQLlogo from '../assets/logos/SQLlogo.jpg';
-import anthropiclogo from '../assets/logos/anthropiclogo.png';
+import anthropiclogo from '../assets/logos/anthropicLogo.png';
 import fastAPIlogo from '../assets/logos/fastAPILogo.png';
 
 interface SectionProps {
