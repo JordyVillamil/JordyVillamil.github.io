@@ -6,6 +6,7 @@ import AboutSection from './sections/AboutSection';
 import SkillsSection from './sections/SkillsSection';
 import PortfolioSection from './sections/PortfolioSection';
 import ContactSection from './sections/ContactSection';
+import AvatarWidget from './components/AI/AvatarWidget';
 import './styles/global.css'; // Estilos globales
 
 const App: React.FC = () => {
@@ -20,8 +21,9 @@ const App: React.FC = () => {
       <SkillsSection id="habilidades" />
       <PortfolioSection id="portafolio" />
       <ContactSection id="contactame" />
-      
-      {/* Opcional: Footer */}
+
+      {/* Asistente IA flotante */}
+      <AvatarWidget />
     </div>
   );
 };

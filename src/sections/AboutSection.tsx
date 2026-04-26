@@ -1,8 +1,9 @@
 // src/sections/AboutSection.tsx
 import React from 'react';
 import { motion } from 'framer-motion';
-import { FaCode, FaShieldAlt, FaDocker, FaDownload, FaCheckCircle } from 'react-icons/fa';
-import { SiPython, SiJavascript, SiReact, SiDjango, SiDocker, SiRender, SiVercel, SiWireshark, SiKalilinux, SiSnort, SiLaravel } from 'react-icons/si';
+import { FaCode, FaShieldAlt, FaDocker, FaDownload, FaCheckCircle,   } from 'react-icons/fa';
+import { LuBrainCircuit } from 'react-icons/lu';
+import { SiPython, SiOpenai, SiJavascript, SiReact, SiDjango, SiDocker, SiRender, SiVercel, SiWireshark, SiKalilinux, SiSnort, SiLaravel, SiClaude, SiGooglegemini, SiAnthropic, SiGithubactions } from 'react-icons/si';
 import '../styles/AboutSection.css';
 import aboutmelogo from '../assets/logos/aboutme.png';
 
@@ -31,14 +32,22 @@ const AboutSection: React.FC<SectionProps> = ({ id }) => {
       title: 'DevOps',
       description: 'I facilitate the delivery of high-quality software through automation and collaboration. I use Git/Github for efficient version control and design CI/CD pipelines to automate deployments. Additionally, I apply containerization techniques with Docker to ensure consistency between development and production environments, all within a framework based on agile methodologies to optimize speed and reliability.',
       color: '#2ecc71',
-      techs: [SiDocker, SiRender, SiVercel]
+      techs: [SiDocker, SiRender, SiVercel, SiGithubactions]
+    },
+    {
+      icon: LuBrainCircuit,
+      title: 'AI',
+      description: 'I build AI-native systems by orchestrating autonomous agents and standardized context through the Model Context Protocol (MCP). Rather than just prompting, I engineer scalable, hexagonal architectures that allow LLMs—including Claude, Gemini, and OpenAI—to interact with real-time financial, logistics, and web data. My expertise lies in bridging the gap between raw model reasoning and production-ready tools, leveraging the multimodal strengths of Gemini API for logistics and GPT-4o/Claude for complex quantitative analysis. I focus on turning AI capabilities into operational workflows that solve real-world bottlenecks through Agentic Workflows and secure integration.',
+      color: '#5c00b8',
+      techs: [SiOpenai, SiPython, SiClaude, SiGooglegemini, SiAnthropic]
     }
   ];
 
   const highlights = [
     'Google Cybersecurity Professional Certificate',
     'University of the Andes Cybersecurity Specialization',
-    'IBM DevOps Training (In Progress)',
+    'Board Infinity QA & Testing Certification',
+    'Anthropic AI Agents, Claude Code and Model Context Protocol certifications',
     'English Proficiency: B1'
   ];
 
@@ -99,10 +108,13 @@ const AboutSection: React.FC<SectionProps> = ({ id }) => {
         <motion.div variants={itemVariants} className="bio-content">
           <h3>Who am I?</h3>
           <p className="bio-description">
-            I am a <strong>software developer</strong> with a strong specialization in <strong>cybersecurity</strong>, backed by professional certifications from Google and the University of the Andes, and with ongoing training in DevOps from IBM.
+            I am a <strong>software engineering student</strong>  with training as a Technologist in Software Analysis and Development,  <strong>specialization in Cybersecurity (Google & Universidad de los Andes) and certification in QA & Testing.</strong>
           </p>
           <p className="bio-description">
-            I have experience in the software development life cycle (SDLC), vulnerability analysis, penetration testing, and CI/CD practices with Docker. I am looking to apply my skills in full-stack development (Python, JS, PHP) and security to build strong and reliable technological solutions.
+            Experience in test design, automation and strategies in Agile/DevOps environments. My background in Full
+            Stack development, Secure SDLC and the advanced use of generative AI (Claude Code, Model Context 
+            Protocol) allows me to understand the complete software cycle, accelerate workflows and identify failures with 
+            deep technical criteria. Active gamer with natural ability for playtesting. English level: B1. 
           </p>
 
           {/* Highlights */}

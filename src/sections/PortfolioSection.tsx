@@ -8,6 +8,7 @@ import '../styles/PortfolioSection.css';
 import EduGestion360gif from '../assets/previews/EduGestion360.gif';
 import TimePiecesgif from '../assets/previews/TimePieces.gif';
 import EWEADNgif from '../assets/previews/EWEADN.gif';
+import SynapseTradegif from '../assets/previews/SynapseTrade.gif';
 
 interface SectionProps {
   id: string;
@@ -212,6 +213,17 @@ const PortfolioSection: React.FC<SectionProps> = ({ id }) => {
       image: EWEADNgif,
       featured: false,
       year: '2025'
+    },
+    {
+      title: 'Synapse Trade',
+      subtitle: 'Financial and quantitative analysis agent',
+      description: 'Financial and quantitative analysis agent that evaluates complex strategies and generates technical and economic feasibility reports, with MCP integration for real-time market data.',
+      tags: ['python', 'yfinance', 'alphavantage', 'pandas', 'numpy', 'scipy', 'plotly', 'FastApi', 'Typer+rich', 'MCP', 'jinja2', 'OpenAi', 'feedparser+textblob'],
+      githubLink: 'https://github.com/JordyVillamil/Synapse-Trade',
+      previewLink: 'https://github.com/JordyVillamil/Synapse-Trade',
+      image: SynapseTradegif,
+      featured: false,
+      year: '2026'
     }
   ];
 

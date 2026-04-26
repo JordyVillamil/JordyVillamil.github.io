@@ -17,6 +17,8 @@ import djangologo from '../assets/logos/django3.png';
 import devopslogo from '../assets/logos/devops.png';
 import cybersecuritylogo from '../assets/logos/vpn.png';
 import SQLlogo from '../assets/logos/SQLlogo.jpg';
+import anthropiclogo from '../assets/logos/anthropiclogo.png';
+import fastAPIlogo from '../assets/logos/fastAPIlogo.png';
 
 interface SectionProps {
   id: string;
@@ -45,17 +47,21 @@ const SkillsSection: React.FC<SectionProps> = ({ id }) => {
     { name: 'Python', icon: pythonlogo, category: 'Backend' },
     { name: 'Django', icon: djangologo, category: 'Backend' },
     { name: 'SQL', icon: SQLlogo, category: 'Backend' },
-    
+    { name: 'FastAPI', icon: fastAPIlogo, category: 'Backend' },
+
     // DevOps
     { name: 'Docker', icon: dockerlogo, category: 'DevOps' },
     { name: 'GitHub', icon: githublogo, category: 'DevOps' },
     { name: 'CI/CD', icon: devopslogo, category: 'DevOps' },
+
+    //AI
+    { name: 'Anthropic', icon: anthropiclogo, category: 'AI' },
     
     // Security
     { name: 'Cybersecurity', icon: cybersecuritylogo, category: 'Security' },
   ];
 
-  const categories = ['All', 'Frontend', 'Backend', 'DevOps', 'Security'];
+  const categories = ['All', 'Frontend', 'Backend', 'DevOps', 'Security', 'AI'];
 
   const filteredSkills = activeCategory === 'All' 
     ? skills 
