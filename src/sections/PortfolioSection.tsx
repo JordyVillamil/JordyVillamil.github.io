@@ -10,6 +10,7 @@ import TimePiecesgif from '../assets/previews/TimePieces.gif';
 import EWEADNgif from '../assets/previews/EWEADN.gif';
 import SynapseTradegif from '../assets/previews/SynapseTrade.gif';
 import XVbirthdaygif from '../assets/previews/XVBirthday.gif';
+import SpotterELDsimulatorgif from '../assets/previews/SpotterELDsimulator.gif';
 
 interface SectionProps {
   id: string;
@@ -225,6 +226,17 @@ const PortfolioSection: React.FC<SectionProps> = ({ id }) => {
       image: EWEADNgif,
       featured: false,
       year: '2025'
+    },
+    {
+      title: 'Spotter ELD Simulator',
+      subtitle: 'A Full-Stack application designed to plan freight truck routes and automatically generate Electronic Logging Device (ELD) logs.',
+      description: 'This simulator strictly adheres to the FMCSA Hours of Service (HOS) regulations for property-carrying drivers, demonstrating complex domain logic isolated within a modern web framework.',
+      tags: ['Python', 'Django', 'Django REST framework', 'React', 'Vite', 'Tailwind CSS', 'Leaflet', 'Custom React Gantt Chart', 'Vercel', 'Render'],
+      githubLink: 'https://github.com/JordyVillamil/Spotter-ELD-Simulator',
+      previewLink: 'https://spottereld-37ko.vercel.app/',
+      image: SpotterELDsimulatorgif,
+      featured: true,
+      year: '2026'
     },
     {
       title: 'Synapse Trade',

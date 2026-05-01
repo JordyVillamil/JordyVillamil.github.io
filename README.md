@@ -8,6 +8,7 @@
 
 Portfolio personal interactivo desarrollado con React, TypeScript y Vite. Presenta una experiencia de usuario moderna con animaciones fluidas, efectos visuales avanzados y diseño responsive.
 
+
 🌐 **Demo en vivo:** [https://JordyVillamil.github.io/portfolio-Jordy-Villamil](https://JordyVillamil.github.io/portfolio-Jordy-Villamil)
 
 ---
