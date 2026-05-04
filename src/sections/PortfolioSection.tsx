@@ -5,12 +5,12 @@ import { FaGithub, FaExternalLinkAlt, FaCode, FaRocket } from 'react-icons/fa';
 import '../styles/PortfolioSection.css';
 
 // Imports de imágenes
-import EduGestion360gif from '../assets/previews/EduGestion360.gif';
-import TimePiecesgif from '../assets/previews/TimePieces.gif';
-import EWEADNgif from '../assets/previews/EWEADN.gif';
-import SynapseTradegif from '../assets/previews/SynapseTrade.gif';
-import XVbirthdaygif from '../assets/previews/XVBirthday.gif';
-import SpotterELDsimulatorgif from '../assets/previews/SpotterELDsimulator.gif';
+import EduGestion360gif from '../assets/previews/EduGestion360.mp4';
+import TimePiecesgif from '../assets/previews/TimePieces.mp4';
+import EWEADNgif from '../assets/previews/EWEADN.mp4';
+import SynapseTradegif from '../assets/previews/SynapseTrade.mp4';
+import XVbirthdaygif from '../assets/previews/XVBirthday.mp4';
+import SpotterELDsimulatorgif from '../assets/previews/SpotterELDsimulator.mp4';
 
 interface SectionProps {
   id: string;
@@ -28,18 +28,21 @@ interface Project {
   year: string;
 }
 
-// Componente de imagen con lazy loading optimizado
-const LazyImage: React.FC<{
+// ─── Componente de media con lazy loading optimizado ──────────────────────────
+// Soporta tanto <video> (mp4/webm) como <img>
+const LazyMedia: React.FC<{
   src: string;
   alt: string;
   className: string;
 }> = ({ src, alt, className }) => {
-  const [isLoaded, setIsLoaded] = useState(false);
   const [isInView, setIsInView] = useState(false);
-  const imgRef = useRef<HTMLImageElement>(null);
+  const [isReady, setIsReady] = useState(false);
+  const wrapperRef = useRef<HTMLDivElement>(null);
+
+  const isVideo = src.endsWith('.mp4') || src.endsWith('.webm');
 
   useEffect(() => {
-    if (!imgRef.current) return;
+    if (!wrapperRef.current) return;
 
     const observer = new IntersectionObserver(
       (entries) => {
@@ -50,31 +53,44 @@ const LazyImage: React.FC<{
           }
         });
       },
-      {
-        rootMargin: '50px',
-      }
+      { rootMargin: '50px' }
     );
 
-    observer.observe(imgRef.current);
-
+    observer.observe(wrapperRef.current);
     return () => observer.disconnect();
   }, []);
 
   return (
-    <div ref={imgRef} className="project-image-wrapper">
-      {isInView && (
-        <img
-          src={src}
-          alt={alt}
-          className={`${className} ${isLoaded ? 'loaded' : 'loading'}`}
-          onLoad={() => setIsLoaded(true)}
-          loading="lazy"
-        />
-      )}
-      {!isLoaded && (
+    <div ref={wrapperRef} className="project-image-wrapper">
+      {/* Skeleton visible mientras no está listo */}
+      {!isReady && (
         <div className="image-skeleton">
           <div className="skeleton-shimmer"></div>
         </div>
+      )}
+
+      {isInView && isVideo && (
+        <video
+          src={src}
+          className={`${className} ${isReady ? 'loaded' : 'loading'}`}
+          autoPlay
+          loop
+          muted
+          playsInline
+          onCanPlay={() => setIsReady(true)}
+          style={{ display: isReady ? 'block' : 'none' }}
+        />
+      )}
+
+      {isInView && !isVideo && (
+        <img
+          src={src}
+          alt={alt}
+          className={`${className} ${isReady ? 'loaded' : 'loading'}`}
+          loading="lazy"
+          onLoad={() => setIsReady(true)}
+          style={{ display: isReady ? 'block' : 'none' }}
+        />
       )}
     </div>
   );
@@ -83,19 +99,22 @@ const LazyImage: React.FC<{
 const PortfolioSection: React.FC<SectionProps> = ({ id }) => {
   const [filter, setFilter] = useState<'all' | 'featured'>('all');
 
-  // Función para abrir video en nueva ventana
-  const openGifInNewWindow = (gifSrc: string, title: string) => {
+  // Función para abrir video/gif en nueva ventana
+  const openGifInNewWindow = (mediaSrc: string, title: string) => {
     const width = 1000;
     const height = 700;
     const left = (window.screen.width - width) / 2;
     const top = (window.screen.height - height) / 2;
-    
+
     const newWindow = window.open(
       '',
       `${title} - Demo`,
       `width=${width},height=${height},left=${left},top=${top},resizable=yes,scrollbars=yes`
     );
-    
+
+    const isVideo =
+      mediaSrc.endsWith('.mp4') || mediaSrc.endsWith('.webm');
+
     if (newWindow) {
       newWindow.document.write(`
         <!DOCTYPE html>
@@ -105,11 +124,7 @@ const PortfolioSection: React.FC<SectionProps> = ({ id }) => {
           <meta name="viewport" content="width=device-width, initial-scale=1.0">
           <title>${title} - Demo</title>
           <style>
-            * {
-              margin: 0;
-              padding: 0;
-              box-sizing: border-box;
-            }
+            * { margin: 0; padding: 0; box-sizing: border-box; }
             body {
               background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
               display: flex;
@@ -120,37 +135,28 @@ const PortfolioSection: React.FC<SectionProps> = ({ id }) => {
               font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
               padding: 20px;
             }
-            .gif-container {
+            .media-container {
               width: 100%;
               max-width: 900px;
               background: #000;
               border-radius: 12px;
-              box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+              box-shadow: 0 20px 60px rgba(0,0,0,0.5);
               overflow: hidden;
             }
-            .gif-header {
+            .media-header {
               background: linear-gradient(135deg, #5c00b8, #a753df);
               padding: 20px;
               color: white;
             }
-            .gif-header h1 {
-              font-size: 1.5rem;
-              font-weight: 700;
-              margin: 0;
-            }
-            img {
-              width: 100%;
-              height: auto;
-              display: block;
-            }
-
+            .media-header h1 { font-size: 1.5rem; font-weight: 700; margin: 0; }
+            video, img { width: 100%; height: auto; display: block; }
             .close-btn {
               position: fixed;
               top: 20px;
               right: 20px;
-              background: rgba(255, 255, 255, 0.1);
+              background: rgba(255,255,255,0.1);
               backdrop-filter: blur(10px);
-              border: 2px solid rgba(255, 255, 255, 0.2);
+              border: 2px solid rgba(255,255,255,0.2);
               color: white;
               padding: 12px 24px;
               border-radius: 50px;
@@ -161,19 +167,23 @@ const PortfolioSection: React.FC<SectionProps> = ({ id }) => {
               z-index: 1000;
             }
             .close-btn:hover {
-              background: rgba(255, 255, 255, 0.2);
-              border-color: rgba(255, 255, 255, 0.4);
+              background: rgba(255,255,255,0.2);
+              border-color: rgba(255,255,255,0.4);
               transform: scale(1.05);
             }
           </style>
         </head>
         <body>
           <button class="close-btn" onclick="window.close()">✕ Close</button>
-          <div class="gif-container">
-            <div class="gif-header">
+          <div class="media-container">
+            <div class="media-header">
               <h1>${title} - Demo</h1>
             </div>
-            <img src="${gifSrc}" alt="${title} Demo">
+            ${
+              isVideo
+                ? `<video src="${mediaSrc}" autoplay loop muted playsinline></video>`
+                : `<img src="${mediaSrc}" alt="${title} Demo">`
+            }
           </div>
         </body>
         </html>
@@ -198,7 +208,7 @@ const PortfolioSection: React.FC<SectionProps> = ({ id }) => {
       title: '15th Birthday Invitation',
       subtitle: 'Interactive electronic invitation for a 15th birthday party with an "Alice in Wonderland" theme.',
       description: 'Interactive electronic invitation for a 15th birthday party with an "Alice in Wonderland" theme. Includes an animated introduction screen, interactive envelope, card with multiple navigable sections, quill pen writing effect, WebGL fluid simulation, and background music.',
-      tags: ['HTML', 'CSS', 'Googlefonts', 'SplashCursor', 'AudioAPI', 'MutationObserver',],
+      tags: ['HTML', 'CSS', 'Googlefonts', 'SplashCursor', 'AudioAPI', 'MutationObserver'],
       githubLink: 'https://edguitarz872-maker.github.io/Invitacion-XV/',
       previewLink: 'https://edguitarz872-maker.github.io/Invitacion-XV/',
       image: XVbirthdaygif,
@@ -251,46 +261,26 @@ const PortfolioSection: React.FC<SectionProps> = ({ id }) => {
     }
   ];
 
-  const filteredProjects = filter === 'featured' 
-    ? projects.filter(p => p.featured) 
+  const filteredProjects = filter === 'featured'
+    ? projects.filter(p => p.featured)
     : projects;
 
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
       opacity: 1,
-      transition: {
-        staggerChildren: 0.15,
-        delayChildren: 0.1
-      }
+      transition: { staggerChildren: 0.15, delayChildren: 0.1 }
     },
-    exit: {
-      opacity: 0,
-      transition: { duration: 0.3 }
-    }
+    exit: { opacity: 0, transition: { duration: 0.3 } }
   };
 
   const cardVariants = {
-    hidden: { 
-      opacity: 0, 
-      y: 40,
-      scale: 0.95
-    },
+    hidden: { opacity: 0, y: 40, scale: 0.95 },
     visible: {
-      opacity: 1,
-      y: 0,
-      scale: 1,
-      transition: { 
-        duration: 0.5,
-        ease: "easeInOut" as const
-      }
+      opacity: 1, y: 0, scale: 1,
+      transition: { duration: 0.5, ease: "easeInOut" as const }
     },
-    exit: {
-      opacity: 0,
-      y: -20,
-      scale: 0.95,
-      transition: { duration: 0.3 }
-    }
+    exit: { opacity: 0, y: -20, scale: 0.95, transition: { duration: 0.3 } }
   };
 
   return (
@@ -355,24 +345,19 @@ const PortfolioSection: React.FC<SectionProps> = ({ id }) => {
               >
                 {/* Featured Badge */}
                 {project.featured && (
-                  <motion.div 
+                  <motion.div
                     className="featured-badge"
                     initial={{ scale: 0, rotate: -20 }}
                     animate={{ scale: 1, rotate: 0 }}
-                    transition={{ 
-                      type: "spring", 
-                      stiffness: 260,
-                      damping: 20,
-                      delay: 0.3
-                    }}
+                    transition={{ type: "spring", stiffness: 260, damping: 20, delay: 0.3 }}
                   >
                     <FaRocket /> Featured
                   </motion.div>
                 )}
 
-                {/* Project Image */}
+                {/* Project Media — usa LazyMedia en lugar de LazyImage */}
                 <div className="project-image-container">
-                  <LazyImage
+                  <LazyMedia
                     src={project.image}
                     alt={`Preview of ${project.title} - ${project.subtitle}`}
                     className="project-image"
@@ -418,8 +403,8 @@ const PortfolioSection: React.FC<SectionProps> = ({ id }) => {
                   {/* Tags */}
                   <div className="project-tags">
                     {project.tags.map(tag => (
-                      <motion.span 
-                        key={tag} 
+                      <motion.span
+                        key={tag}
                         className="tag-item"
                         whileHover={{ scale: 1.05, y: -2 }}
                         transition={{ type: "spring", stiffness: 400 }}
@@ -477,8 +462,6 @@ const PortfolioSection: React.FC<SectionProps> = ({ id }) => {
           >
             Get In Touch
           </motion.a>
-
-
         </motion.div>
       </div>
     </section>
