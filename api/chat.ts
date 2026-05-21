@@ -1,6 +1,4 @@
 // Vercel Serverless Function: POST /api/chat
-// Proxies chat requests to OpenAI so the API key stays server-side.
-
 export const config = { runtime: "edge" };
 
 export default async function handler(req: Request): Promise<Response> {
@@ -8,9 +6,9 @@ export default async function handler(req: Request): Promise<Response> {
     return new Response("Method not allowed", { status: 405 });
   }
 
-  const apiKey = process.env.OPENAI_API_KEY;
+  const apiKey = process.env.CEREBRAS_API_KEY; // 👈 1. Cambiar variable
   if (!apiKey) {
-    return new Response("OPENAI_API_KEY not configured", { status: 500 });
+    return new Response("CEREBRAS_API_KEY not configured", { status: 500 });
   }
 
   try {
@@ -22,11 +20,10 @@ export default async function handler(req: Request): Promise<Response> {
       });
     }
 
-    // Limitar historial para evitar abusos de tokens
     const trimmedMessages = messages.slice(-20);
 
-    const openaiRes = await fetch(
-      "https://api.openai.com/v1/chat/completions",
+    const cerebrasRes = await fetch(
+      "https://api.cerebras.ai/v1/chat/completions", // 👈 2. Cambiar URL
       {
         method: "POST",
         headers: {
@@ -34,8 +31,8 @@ export default async function handler(req: Request): Promise<Response> {
           Authorization: `Bearer ${apiKey}`,
         },
         body: JSON.stringify({
-          model: "gpt-4o-mini",
-          max_tokens: 300,
+          model: "llama3.1-8b",           // 👈 sin guion
+          max_completion_tokens: 300,     // 👈 parámetro nativo de Cerebras
           temperature: 0.7,
           messages: [
             { role: "system", content: systemPrompt },
@@ -45,12 +42,12 @@ export default async function handler(req: Request): Promise<Response> {
       }
     );
 
-    if (!openaiRes.ok) {
-      const err = await openaiRes.text();
-      return new Response(err, { status: openaiRes.status });
+    if (!cerebrasRes.ok) {
+      const err = await cerebrasRes.text();
+      return new Response(err, { status: cerebrasRes.status });
     }
 
-    const data = await openaiRes.json();
+    const data = await cerebrasRes.json();
     const reply = data.choices?.[0]?.message?.content ?? "";
 
     return new Response(JSON.stringify({ reply }), {
